@@ -9,7 +9,7 @@ import { createClient } from '@/lib/supabase/server'
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Enter a valid email address').or(z.literal('')),
+  email: z.email('Enter a valid email address').or(z.literal('')),
   phone: z.string(),
   next_contact_date: z.string(), // YYYY-MM-DD or empty string
 })
