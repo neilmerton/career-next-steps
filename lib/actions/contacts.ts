@@ -146,10 +146,13 @@ export async function addContactUpdate(contactId: string, formData: FormData) {
 
   // If a new next_contact_date was provided, update the contact record too
   if (parsed.data.new_next_contact_date) {
-    await supabase
+    const { error: contactUpdateError } = await supabase
       .from('contacts')
       .update({ next_contact_date: parsed.data.new_next_contact_date })
       .eq('id', contactId)
+    if (contactUpdateError) {
+      redirect(`/contacts/${contactId}?error=${encodeURIComponent(contactUpdateError.message)}`)
+    }
   }
 
   revalidatePath(`/contacts/${contactId}`)

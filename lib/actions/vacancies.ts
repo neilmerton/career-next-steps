@@ -177,10 +177,13 @@ export async function addVacancyUpdate(vacancyId: string, formData: FormData) {
 
   // If a status change was requested, update the vacancy record too
   if (newStatus) {
-    await supabase
+    const { error: vacancyUpdateError } = await supabase
       .from('job_vacancies')
       .update({ status: newStatus })
       .eq('id', vacancyId)
+    if (vacancyUpdateError) {
+      redirect(`/vacancies/${vacancyId}?error=${encodeURIComponent(vacancyUpdateError.message)}`)
+    }
   }
 
   revalidatePath(`/vacancies/${vacancyId}`)

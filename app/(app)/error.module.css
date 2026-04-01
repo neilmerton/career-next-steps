@@ -1,0 +1,33 @@
+.page {
+  max-width: 640px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.75rem;
+}
+
+.message {
+  color: #6b7280;
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.button {
+  background-color: #111827;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #374151;
+}

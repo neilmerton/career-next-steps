@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate, formatDateTime } from '@/lib/utils/dates'
@@ -33,7 +34,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
 
   return (
     <div className={styles.page}>
-      <a href="/contacts" className={styles.back}>← Contacts</a>
+      <Link href="/contacts" className={styles.back}>← Contacts</Link>
 
       {error && <p className={styles.error}>{error}</p>}
       {message && <p className={styles.message}>{message}</p>}

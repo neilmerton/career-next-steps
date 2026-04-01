@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
@@ -35,7 +36,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
 
   return (
     <div className={styles.page}>
-      <a href="/vacancies" className={styles.back}>← Job Vacancies</a>
+      <Link href="/vacancies" className={styles.back}>← Job Vacancies</Link>
 
       {error && <p className={styles.error}>{error}</p>}
       {message && <p className={styles.message}>{message}</p>}
