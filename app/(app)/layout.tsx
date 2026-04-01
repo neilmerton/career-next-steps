@@ -1,4 +1,5 @@
 import { signOut } from '@/lib/actions/auth'
+import NavLinks from '@/components/NavLinks'
 import styles from './layout.module.css'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -6,9 +7,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <div className={styles.shell}>
       <nav className={styles.nav}>
         <div className={styles.navLinks}>
-          <a href="/dashboard">Dashboard</a>
-          <a href="/vacancies">Job Vacancies</a>
-          <a href="/contacts">Contacts</a>
+          <NavLinks />
         </div>
         <form action={signOut} className={styles.logoutForm}>
           <button type="submit" className={styles.logoutButton}>Log out</button>
