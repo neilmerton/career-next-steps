@@ -3,6 +3,7 @@ import { createVacancy } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
 import type { Contact } from '@/types/database'
 import styles from './new.module.css'
+import Link from 'next/link'
 
 interface Props {
   searchParams: Promise<{ error?: string }>
@@ -20,7 +21,7 @@ export default async function NewVacancyPage({ searchParams }: Props) {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <a href="/vacancies" className={styles.back}>← Job Vacancies</a>
+        <Link href="/vacancies" className={styles.back}>← Job Vacancies</Link>
         <h1 className={styles.title}>Add vacancy</h1>
       </div>
 
@@ -72,9 +73,9 @@ export default async function NewVacancyPage({ searchParams }: Props) {
         <div className={styles.field}>
           <label htmlFor="contact_id" className={styles.label}>
             Contact
-            <a href="/contacts/new" className={styles.createLink} target="_blank" rel="noreferrer">
+            <Link href="/contacts/new" className={styles.createLink} target="_blank" rel="noreferrer">
               + Create new
-            </a>
+            </Link>
           </label>
           <select id="contact_id" name="contact_id" className={styles.select}>
             <option value="">— None —</option>
@@ -90,7 +91,7 @@ export default async function NewVacancyPage({ searchParams }: Props) {
         </div>
 
         <div className={styles.actions}>
-          <a href="/vacancies" className={styles.cancel}>Cancel</a>
+          <Link href="/vacancies" className={styles.cancel}>Cancel</Link>
           <button type="submit" className={styles.submit}>Add vacancy</button>
         </div>
       </form>
