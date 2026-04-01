@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skills": {
+    "clean-code": {
+      "source": "vudovn/antigravity-kit",
+      "sourceType": "github",
+      "computedHash": "3554f62f58a36cb29748f44e82b7facbd500d4637cc0f2092df4dfff8192338d"
+    },
+    "code-review-checklist": {
+      "source": "vudovn/antigravity-kit",
+      "sourceType": "github",
+      "computedHash": "e38105a283f7d55b5d990a1981b5aaaaab1fe2a166a4a2959b77fa43113ecc5f"
+    },
+    "frontend-design": {
+      "source": "vudovn/antigravity-kit",
+      "sourceType": "github",
+      "computedHash": "a96704c64a0f8850d44454f95ea1238a75ebac909cb055614c641f903e297f3a"
+    },
+    "react-best-practices": {
+      "source": "vudovn/antigravity-kit",
+      "sourceType": "github",
+      "computedHash": "bd96e30429ff20b3bdb8e5ece7543c2526b83511286d22f22056c62cb2d58b74"
+    },
+    "web-design-guidelines": {
+      "source": "vudovn/antigravity-kit",
+      "sourceType": "github",
+      "computedHash": "97ff58dd9f1e45eebcf75aceb6ba19566ecc0f82652bc5d9071edabb450b9c10"
+    }
+  }
+}
