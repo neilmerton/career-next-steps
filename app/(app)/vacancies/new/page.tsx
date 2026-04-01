@@ -1,7 +1,6 @@
-import { createClient } from '@/lib/supabase/server'
+import { getContactsForSelect } from '@/lib/data/vacancies'
 import { createVacancy } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
-import type { Contact } from '@/types/database'
 import styles from './new.module.css'
 import Link from 'next/link'
 
@@ -12,11 +11,7 @@ interface Props {
 export default async function NewVacancyPage({ searchParams }: Props) {
   const { error } = await searchParams
 
-  const supabase = await createClient()
-  const { data: contacts } = await supabase
-    .from('contacts')
-    .select('id, name')
-    .order('name', { ascending: true })
+  const contacts = await getContactsForSelect()
 
   return (
     <div className={styles.page}>
@@ -79,7 +74,7 @@ export default async function NewVacancyPage({ searchParams }: Props) {
           </label>
           <select id="contact_id" name="contact_id" className={styles.select}>
             <option value="">— None —</option>
-            {(contacts as Pick<Contact, 'id' | 'name'>[] ?? []).map((c) => (
+            {contacts.map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
           </select>

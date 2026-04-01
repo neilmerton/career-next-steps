@@ -1,10 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { getVacancy } from '@/lib/data/vacancies'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
 import { formatDate, formatDateTime } from '@/lib/utils/dates'
-import type { Contact, Update } from '@/types/database'
 import styles from './detail.module.css'
 
 interface Props {
@@ -16,19 +15,10 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
   const { id } = await params
   const { error, message } = await searchParams
 
-  const supabase = await createClient()
+  const result = await getVacancy(id)
+  if (!result) notFound()
 
-  const [{ data: vacancy }, { data: updates }, { data: contacts }] = await Promise.all([
-    supabase.from('job_vacancies').select('*').eq('id', id).single(),
-    supabase
-      .from('updates')
-      .select('*')
-      .eq('job_vacancy_id', id)
-      .order('occurred_at', { ascending: false }),
-    supabase.from('contacts').select('id, name').order('name', { ascending: true }),
-  ])
-
-  if (!vacancy) notFound()
+  const { vacancy, updates, contacts } = result
 
   const boundUpdateVacancy = updateVacancy.bind(null, id)
   const boundDeleteVacancy = deleteVacancy.bind(null, id)
@@ -107,7 +97,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
             <label htmlFor="contact_id" className={styles.label}>Contact</label>
             <select id="contact_id" name="contact_id" defaultValue={vacancy.contact_id ?? ''} className={styles.select}>
               <option value="">— None —</option>
-              {(contacts as Pick<Contact, 'id' | 'name'>[] ?? []).map((c) => (
+              {contacts.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
@@ -164,7 +154,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>History</h2>
           <ol className={styles.timeline}>
-            {(updates as Update[]).map((u) => (
+            {updates.map((u) => (
               <li key={u.id} className={styles.timelineItem}>
                 <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
                 <p className={styles.timelineNotes}>{u.notes}</p>
