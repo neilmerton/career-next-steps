@@ -37,5 +37,3 @@
 - No third-party UI component libraries
 - Styling in standard CSS only (no Tailwind CSS)
 - Supabase required for data storage and authentication
-
-> ctx7sk-24756580-21cb-4342-ae83-178d93c230ff
