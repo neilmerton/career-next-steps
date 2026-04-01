@@ -3,6 +3,7 @@ import { addDays } from '@/lib/utils/dates'
 import ContactList from '@/components/ContactList'
 import type { Contact } from '@/types/database'
 import styles from './contacts.module.css'
+import Link from 'next/link'
 
 export default async function ContactsPage() {
   const supabase = await createClient()
@@ -21,7 +22,7 @@ export default async function ContactsPage() {
     <div className={styles.page}>
       <div className={styles.header}>
         <h1 className={styles.title}>Contacts</h1>
-        <a href="/contacts/new" className={styles.addButton}>Add contact</a>
+        <Link href="/contacts/new" className={styles.addButton}>Add contact</Link>
       </div>
       <ContactList contacts={contacts} />
     </div>

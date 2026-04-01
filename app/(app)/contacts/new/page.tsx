@@ -1,5 +1,6 @@
 import { createContact } from '@/lib/actions/contacts'
 import styles from './new.module.css'
+import Link from 'next/link'
 
 interface Props {
   searchParams: Promise<{ error?: string }>
@@ -11,7 +12,7 @@ export default async function NewContactPage({ searchParams }: Props) {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <a href="/contacts" className={styles.back}>← Contacts</a>
+        <Link href="/contacts" className={styles.back}>← Contacts</Link>
         <h1 className={styles.title}>Add contact</h1>
       </div>
 
@@ -39,7 +40,7 @@ export default async function NewContactPage({ searchParams }: Props) {
         </div>
 
         <div className={styles.actions}>
-          <a href="/contacts" className={styles.cancel}>Cancel</a>
+          <Link href="/contacts" className={styles.cancel}>Cancel</Link>
           <button type="submit" className={styles.submit}>Add contact</button>
         </div>
       </form>
