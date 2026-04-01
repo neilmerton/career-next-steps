@@ -9,7 +9,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 // ── Sign up ──────────────────────────────────────────────────────────────────
 
 const signUpSchema = z.object({
-  email: z.string().email('Enter a valid email address'),
+  email: z.email('Enter a valid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
 })
 
@@ -43,7 +43,7 @@ export async function signUp(formData: FormData) {
 // ── Sign in ──────────────────────────────────────────────────────────────────
 
 const signInSchema = z.object({
-  email: z.string().email('Enter a valid email address'),
+  email: z.email('Enter a valid email address'),
   password: z.string().min(1, 'Enter your password'),
 })
 
@@ -79,7 +79,7 @@ export async function signOut() {
 // ── Request password reset ────────────────────────────────────────────────────
 
 const resetPasswordSchema = z.object({
-  email: z.string().email('Enter a valid email address'),
+  email: z.email('Enter a valid email address'),
 })
 
 export async function resetPassword(formData: FormData) {
