@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getVacancy } from '@/lib/data/vacancies'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
-import { formatDate, formatDateTime } from '@/lib/utils/dates'
+import { formatDateTime } from '@/lib/utils/dates'
 import styles from './detail.module.css'
 
 interface Props {
