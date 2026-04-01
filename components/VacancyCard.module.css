@@ -1,0 +1,77 @@
+.card {
+  display: block;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.375rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* ── Status badges ─────────────────────────────────────── */
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.applied {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.interviewing {
+  background-color: #fefce8;
+  color: #ca8a04;
+}
+
+.offered {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.accepted {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.rejected {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.withdrawn {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
