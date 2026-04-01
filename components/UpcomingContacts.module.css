@@ -1,0 +1,51 @@
+.empty {
+  font-size: 0.9375rem;
+  color: #6b7280;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #111827;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name:hover {
+  color: #2563eb;
+}
+
+.due {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.overdue {
+  font-size: 0.8125rem;
+  color: #dc2626;
+  font-weight: 500;
+  white-space: nowrap;
+}

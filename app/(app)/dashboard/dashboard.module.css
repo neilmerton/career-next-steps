@@ -1,0 +1,26 @@
+.page {
+  max-width: 640px;
+}
+
+.title {
+  margin: 0 0 1.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
