@@ -1,9 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { getContact } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate, formatDateTime } from '@/lib/utils/dates'
-import type { Update } from '@/types/database'
 import styles from './detail.module.css'
 
 interface Props {
@@ -15,18 +14,10 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
   const { id } = await params
   const { error, message } = await searchParams
 
-  const supabase = await createClient()
+  const result = await getContact(id)
+  if (!result) notFound()
 
-  const [{ data: contact }, { data: updates }] = await Promise.all([
-    supabase.from('contacts').select('*').eq('id', id).single(),
-    supabase
-      .from('updates')
-      .select('*')
-      .eq('contact_id', id)
-      .order('occurred_at', { ascending: false }),
-  ])
-
-  if (!contact) notFound()
+  const { contact, updates } = result
 
   const boundUpdateContact = updateContact.bind(null, id)
   const boundDeleteContact = deleteContact.bind(null, id)
@@ -127,7 +118,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>History</h2>
           <ol className={styles.timeline}>
-            {(updates as Update[]).map((u) => (
+            {updates.map((u) => (
               <li key={u.id} className={styles.timelineItem}>
                 <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
                 <p className={styles.timelineNotes}>{u.notes}</p>
