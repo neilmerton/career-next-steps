@@ -23,7 +23,11 @@ export default function LatestUpdates({ updates }: Props) {
         const subject = isVacancy
           ? u.job_vacancy?.title ?? 'Vacancy'
           : u.contact?.name ?? 'Contact'
-        const sub = isVacancy && u.job_vacancy?.company ? u.job_vacancy.company : null
+        const sub = isVacancy && u.job_vacancy?.company
+          ? u.job_vacancy.company
+          : u.contact?.company
+            ? u.contact.company
+            : null
 
         return (
           <li key={u.id} className={styles.item}>

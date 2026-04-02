@@ -54,7 +54,7 @@ export interface Update {
 // Joined types used in the UI
 export interface UpdateWithRelations extends Update {
   job_vacancy?: Pick<JobVacancy, 'id' | 'title' | 'company'> | null
-  contact?: Pick<Contact, 'id' | 'name'> | null
+  contact?: Pick<Contact, 'id' | 'name' | 'company'> | null
 }
 
 export interface JobVacancyWithContact extends JobVacancy {

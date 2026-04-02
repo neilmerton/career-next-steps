@@ -34,7 +34,7 @@ export async function getDashboardData(): Promise<DashboardData> {
       .select(`
         *,
         job_vacancy:job_vacancies(id, title, company),
-        contact:contacts(id, name)
+        contact:contacts(id, name, company)
       `)
       .order('occurred_at', { ascending: false })
       .limit(10),
