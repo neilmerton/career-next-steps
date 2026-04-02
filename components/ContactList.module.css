@@ -4,16 +4,16 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 .empty {
-  color: #6b7280;
-  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
 }
 
 .empty a {
-  color: #2563eb;
+  color: var(--color-text-link);
   text-decoration: none;
 }
 

@@ -1,20 +1,20 @@
 .link,
 .active {
-  color: #374151;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: 1rem;
-  padding: 0.25rem 0;
+  font-size: var(--text-base);
+  padding: var(--space-1) 0;
   border-bottom: 2px solid transparent;
 }
 
 .link:hover {
-  color: #111827;
+  color: var(--color-text-primary);
 }
 
 .active {
-  color: #2563eb;
-  border-bottom-color: #2563eb;
-  font-weight: 500;
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: var(--weight-medium);
 }
 
 /* Mobile bottom nav: no underline indicator, use colour only */
