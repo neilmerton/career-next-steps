@@ -30,9 +30,65 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
       {error && <p className={styles.error}>{error}</p>}
       {message && <p className={styles.message}>{message}</p>}
 
-      {/* ── Edit contact ────────────────────────────────── */}
+      {/* ── Add update ──────────────────────────────────── */}
       <section className={styles.section}>
         <h1 className={styles.title}>{contact.name}</h1>
+        <h2 className={styles.sectionTitle}>Add update</h2>
+        <form action={boundAddUpdate} className={styles.form}>
+          <div className={styles.field}>
+            <label htmlFor="notes" className={styles.label}>Notes <span className={styles.required}>*</span></label>
+            <textarea
+              id="notes" name="notes" rows={3} required
+              className={styles.textarea}
+            />
+          </div>
+
+          <div className={styles.fieldRow}>
+            <div className={styles.field}>
+              <label htmlFor="occurred_at" className={styles.label}>Date &amp; time <span className={styles.hint}>(leave blank for now)</span></label>
+              <input
+                id="occurred_at" name="occurred_at" type="datetime-local"
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="new_next_contact_date" className={styles.label}>New next contact date <span className={styles.hint}>(optional)</span></label>
+              <input
+                id="new_next_contact_date" name="new_next_contact_date" type="date"
+                className={styles.input}
+              />
+            </div>
+          </div>
+
+          <div className={styles.formActions}>
+            <button type="submit" className={styles.saveButton}>Add update</button>
+          </div>
+        </form>
+      </section>
+
+      {/* ── Update history ──────────────────────────────── */}
+      {updates && updates.length > 0 && (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>History</h2>
+          <ol className={styles.timeline}>
+            {updates.map((u) => (
+              <li key={u.id} className={styles.timelineItem}>
+                <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
+                <p className={styles.timelineNotes}>{u.notes}</p>
+                {u.new_next_contact_date && (
+                  <p className={styles.timelineMeta}>
+                    Next contact date set to {formatDate(u.new_next_contact_date)}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {/* ── Edit contact ────────────────────────────────── */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Edit contact</h2>
         <form action={boundUpdateContact} className={styles.form}>
           <div className={styles.fieldRow}>
             <div className={styles.field}>
@@ -86,61 +142,6 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
           </div>
         </form>
       </section>
-
-      {/* ── Add update ──────────────────────────────────── */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Add update</h2>
-        <form action={boundAddUpdate} className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="notes" className={styles.label}>Notes <span className={styles.required}>*</span></label>
-            <textarea
-              id="notes" name="notes" rows={3} required
-              className={styles.textarea}
-            />
-          </div>
-
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="occurred_at" className={styles.label}>Date &amp; time <span className={styles.hint}>(leave blank for now)</span></label>
-              <input
-                id="occurred_at" name="occurred_at" type="datetime-local"
-                className={styles.input}
-              />
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="new_next_contact_date" className={styles.label}>New next contact date <span className={styles.hint}>(optional)</span></label>
-              <input
-                id="new_next_contact_date" name="new_next_contact_date" type="date"
-                className={styles.input}
-              />
-            </div>
-          </div>
-
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.saveButton}>Add update</button>
-          </div>
-        </form>
-      </section>
-
-      {/* ── Update history ──────────────────────────────── */}
-      {updates && updates.length > 0 && (
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>History</h2>
-          <ol className={styles.timeline}>
-            {updates.map((u) => (
-              <li key={u.id} className={styles.timelineItem}>
-                <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
-                <p className={styles.timelineNotes}>{u.notes}</p>
-                {u.new_next_contact_date && (
-                  <p className={styles.timelineMeta}>
-                    Next contact date set to {formatDate(u.new_next_contact_date)}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
 
       {/* ── Delete ──────────────────────────────────────── */}
       <section className={styles.dangerZone}>

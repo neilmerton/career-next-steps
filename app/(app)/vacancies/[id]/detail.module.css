@@ -36,6 +36,11 @@
   margin-bottom: var(--space-4);
 }
 
+.description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
 .section {
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-8);

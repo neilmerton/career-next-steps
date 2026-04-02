@@ -31,9 +31,62 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
       {error && <p className={styles.error}>{error}</p>}
       {message && <p className={styles.message}>{message}</p>}
 
-      {/* ── Edit vacancy ─────────────────────────────────── */}
+      {/* ── Add update / change status ───────────────────── */}
       <section className={styles.section}>
         <h1 className={styles.title}>{vacancy.title}</h1>
+        {vacancy.description && <p className={styles.description}>{vacancy.description}</p>}
+        <h2 className={styles.sectionTitle}>Add update</h2>
+        <form action={boundAddUpdate} className={styles.form}>
+          <div className={styles.field}>
+            <label htmlFor="notes" className={styles.label}>Notes <span className={styles.required}>*</span></label>
+            <textarea id="notes" name="notes" rows={3} required className={styles.textarea} />
+          </div>
+
+          <div className={styles.fieldRow}>
+            <div className={styles.field}>
+              <label htmlFor="new_status" className={styles.label}>Change status <span className={styles.hint}>(optional)</span></label>
+              <select id="new_status" name="new_status" className={styles.select}>
+                <option value="">— No change —</option>
+                {ALL_STATUSES.map((s) => (
+                  <option key={s} value={s}>{STATUS_LABELS[s]}</option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="occurred_at" className={styles.label}>Date &amp; time <span className={styles.hint}>(leave blank for now)</span></label>
+              <input id="occurred_at" name="occurred_at" type="datetime-local" className={styles.input} />
+            </div>
+          </div>
+
+          <div className={styles.formActions}>
+            <button type="submit" className={styles.saveButton}>Add update</button>
+          </div>
+        </form>
+      </section>
+
+      {/* ── Update history ───────────────────────────────── */}
+      {updates && updates.length > 0 && (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>History</h2>
+          <ol className={styles.timeline}>
+            {updates.map((u) => (
+              <li key={u.id} className={styles.timelineItem}>
+                <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
+                <p className={styles.timelineNotes}>{u.notes}</p>
+                {u.new_status && (
+                  <p className={styles.timelineMeta}>
+                    Status changed to {STATUS_LABELS[u.new_status]}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {/* ── Edit vacancy ─────────────────────────────────── */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Edit job vacancy</h2>
         <form action={boundUpdateVacancy} className={styles.form}>
           <div className={styles.fieldRow}>
             <div className={styles.field}>
@@ -106,7 +159,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           <div className={styles.field}>
             <label htmlFor="description" className={styles.label}>Notes / description</label>
             <textarea
-              id="description" name="description" rows={4}
+              id="description" name="description" rows={6}
               defaultValue={vacancy.description ?? ''}
               className={styles.textarea}
             />
@@ -117,57 +170,6 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           </div>
         </form>
       </section>
-
-      {/* ── Add update / change status ───────────────────── */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Add update</h2>
-        <form action={boundAddUpdate} className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="notes" className={styles.label}>Notes <span className={styles.required}>*</span></label>
-            <textarea id="notes" name="notes" rows={3} required className={styles.textarea} />
-          </div>
-
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="new_status" className={styles.label}>Change status <span className={styles.hint}>(optional)</span></label>
-              <select id="new_status" name="new_status" className={styles.select}>
-                <option value="">— No change —</option>
-                {ALL_STATUSES.map((s) => (
-                  <option key={s} value={s}>{STATUS_LABELS[s]}</option>
-                ))}
-              </select>
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="occurred_at" className={styles.label}>Date &amp; time <span className={styles.hint}>(leave blank for now)</span></label>
-              <input id="occurred_at" name="occurred_at" type="datetime-local" className={styles.input} />
-            </div>
-          </div>
-
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.saveButton}>Add update</button>
-          </div>
-        </form>
-      </section>
-
-      {/* ── Update history ───────────────────────────────── */}
-      {updates && updates.length > 0 && (
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>History</h2>
-          <ol className={styles.timeline}>
-            {updates.map((u) => (
-              <li key={u.id} className={styles.timelineItem}>
-                <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
-                <p className={styles.timelineNotes}>{u.notes}</p>
-                {u.new_status && (
-                  <p className={styles.timelineMeta}>
-                    Status changed to {STATUS_LABELS[u.new_status]}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
 
       {/* ── Delete ──────────────────────────────────────── */}
       <section className={styles.dangerZone}>
