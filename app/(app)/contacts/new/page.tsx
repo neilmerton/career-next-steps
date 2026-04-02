@@ -25,6 +25,11 @@ export default async function NewContactPage({ searchParams }: Props) {
         </div>
 
         <div className={styles.field}>
+          <label htmlFor="company" className={styles.label}>Company</label>
+          <input id="company" name="company" type="text" className={styles.input} />
+        </div>
+
+        <div className={styles.field}>
           <label htmlFor="email" className={styles.label}>Email</label>
           <input id="email" name="email" type="email" className={styles.input} />
         </div>

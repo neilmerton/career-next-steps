@@ -18,6 +18,7 @@ export interface Contact {
   id: string
   user_id: string
   name: string
+  company: string | null
   phone: string | null
   email: string | null
   next_contact_date: string | null // ISO date string (YYYY-MM-DD)

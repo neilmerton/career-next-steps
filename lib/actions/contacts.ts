@@ -9,6 +9,7 @@ import { createClient } from '@/lib/supabase/server'
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required'),
+  company: z.string(),
   email: z.email('Enter a valid email address').or(z.literal('')),
   phone: z.string(),
   next_contact_date: z.string(), // YYYY-MM-DD or empty string
@@ -34,6 +35,7 @@ async function getAuthenticatedClient() {
 export async function createContact(formData: FormData) {
   const parsed = contactSchema.safeParse({
     name: formData.get('name'),
+    company: formData.get('company') ?? '',
     email: formData.get('email') ?? '',
     phone: formData.get('phone') ?? '',
     next_contact_date: formData.get('next_contact_date') ?? '',
@@ -51,6 +53,7 @@ export async function createContact(formData: FormData) {
     .insert({
       user_id: userId,
       name: parsed.data.name,
+      company: parsed.data.company || null,
       email: parsed.data.email || null,
       phone: parsed.data.phone || null,
       next_contact_date: parsed.data.next_contact_date || null,
@@ -70,6 +73,7 @@ export async function createContact(formData: FormData) {
 export async function updateContact(id: string, formData: FormData) {
   const parsed = contactSchema.safeParse({
     name: formData.get('name'),
+    company: formData.get('company') ?? '',
     email: formData.get('email') ?? '',
     phone: formData.get('phone') ?? '',
     next_contact_date: formData.get('next_contact_date') ?? '',
@@ -86,6 +90,7 @@ export async function updateContact(id: string, formData: FormData) {
     .from('contacts')
     .update({
       name: parsed.data.name,
+      company: parsed.data.company || null,
       email: parsed.data.email || null,
       phone: parsed.data.phone || null,
       next_contact_date: parsed.data.next_contact_date || null,

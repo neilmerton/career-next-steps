@@ -22,6 +22,9 @@ export default function ContactCard({ contact }: Props) {
           </span>
         )}
       </div>
+      {contact.company && (
+        <div className={styles.company}>{contact.company}</div>
+      )}
       {(contact.email || contact.phone) && (
         <div className={styles.meta}>
           {contact.email && <span>{contact.email}</span>}

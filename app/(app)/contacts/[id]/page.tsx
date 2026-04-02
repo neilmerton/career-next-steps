@@ -53,6 +53,15 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
             </div>
           </div>
 
+          <div className={styles.field}>
+            <label htmlFor="company" className={styles.label}>Company</label>
+            <input
+              id="company" name="company" type="text"
+              defaultValue={contact.company ?? ''}
+              className={styles.input}
+            />
+          </div>
+
           <div className={styles.fieldRow}>
             <div className={styles.field}>
               <label htmlFor="email" className={styles.label}>Email</label>

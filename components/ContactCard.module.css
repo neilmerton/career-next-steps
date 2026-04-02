@@ -40,6 +40,12 @@
   white-space: nowrap;
 }
 
+.company {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
 .meta {
   display: flex;
   flex-wrap: wrap;
