@@ -80,7 +80,7 @@ Create a `.env.local` file in the project root:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=http://localhost:3322
 ```
 
 `NEXT_PUBLIC_SITE_URL` is used to construct the redirect link in password reset emails.
