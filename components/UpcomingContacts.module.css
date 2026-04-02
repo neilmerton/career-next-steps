@@ -1,5 +1,5 @@
 .empty {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: #6b7280;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .name {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #111827;
   text-decoration: none;

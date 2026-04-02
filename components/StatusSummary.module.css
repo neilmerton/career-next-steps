@@ -1,5 +1,5 @@
 .empty {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: #6b7280;
 }
 
@@ -51,9 +51,26 @@
 }
 
 /* Per-status colours */
-.applied    { color: #2563eb; }
-.interviewing { color: #d97706; }
-.offered    { color: #7c3aed; }
-.accepted   { color: #16a34a; }
-.rejected   { color: #dc2626; }
-.withdrawn  { color: #6b7280; }
+.applied {
+  color: #2563eb;
+}
+
+.interviewing {
+  color: #d97706;
+}
+
+.offered {
+  color: #7c3aed;
+}
+
+.accepted {
+  color: #16a34a;
+}
+
+.rejected {
+  color: #dc2626;
+}
+
+.withdrawn {
+  color: #6b7280;
+}

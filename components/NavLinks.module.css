@@ -2,7 +2,7 @@
 .active {
   color: #374151;
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   padding: 0.25rem 0;
   border-bottom: 2px solid transparent;
 }
@@ -19,6 +19,7 @@
 
 /* Mobile bottom nav: no underline indicator, use colour only */
 @media (max-width: 768px) {
+
   .link,
   .active {
     border-bottom: none;

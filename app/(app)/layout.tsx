@@ -1,11 +1,13 @@
-import { signOut } from '@/lib/actions/auth'
 import NavLinks from '@/components/NavLinks'
+import { signOut } from '@/lib/actions/auth'
+import Link from 'next/link'
 import styles from './layout.module.css'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.shell}>
       <nav className={styles.nav}>
+        <Link className={styles.homeLink} href="/">Career Next Steps</Link>
         <div className={styles.navLinks}>
           <NavLinks />
         </div>
