@@ -1,10 +1,17 @@
 .link,
 .active {
+  align-items: center;
   color: var(--color-text-secondary);
+  display: inline-flex;
+  gap: var(--space-2);
   text-decoration: none;
   font-size: var(--text-base);
-  padding: var(--space-1) 0;
+  padding: var(--space-1);
   border-bottom: 2px solid transparent;
+
+  >span {
+    display: inline;
+  }
 }
 
 .link:hover {
@@ -24,5 +31,14 @@
   .active {
     border-bottom: none;
     padding: 0;
+
+    >span {
+      display: none;
+    }
+
+    >svg {
+      height: var(--space-8);
+      width: var(--space-8);
+    }
   }
 }

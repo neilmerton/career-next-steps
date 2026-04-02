@@ -2,6 +2,8 @@ import NavLinks from '@/components/NavLinks'
 import { signOut } from '@/lib/actions/auth'
 import Link from 'next/link'
 import styles from './layout.module.css'
+import { Icon } from '@/components/Icon'
+import { Logout01Icon } from '@hugeicons/core-free-icons'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,9 +13,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <div className={styles.navLinks}>
           <NavLinks />
         </div>
-        <form action={signOut} className={styles.logoutForm}>
-          <button type="submit" className={styles.logoutButton}>Log out</button>
-        </form>
+        <button className={styles.logoutButton} onClick={signOut}>
+          <Icon icon={Logout01Icon} />
+          <span>Log out</span>
+        </button>
       </nav>
       <main className={styles.main}>{children}</main>
     </div>
