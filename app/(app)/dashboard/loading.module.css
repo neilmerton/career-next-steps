@@ -1,14 +1,16 @@
 .page {
-  max-width: 640px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 1.5rem 0;
+  padding: var(--space-6) 0;
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  --_base: light-dark(var(--palette-gray-100), #1f2333);
+  --_highlight: light-dark(var(--palette-gray-200), #2a3047);
+  background: linear-gradient(90deg, var(--_base) 25%, var(--_highlight) 50%, var(--_base) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 
 @keyframes shimmer {

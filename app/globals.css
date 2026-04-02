@@ -1,3 +1,185 @@
+/* ============================================================
+   COLOR PALETTE — raw named values, not used directly in CSS
+   ============================================================ */
+:root {
+  /* Blue */
+  --palette-blue-50:  #eff6ff;
+  --palette-blue-100: #dbeafe;
+  --palette-blue-200: #bfdbfe;
+  --palette-blue-300: #93c5fd;
+  --palette-blue-400: #60a5fa;
+  --palette-blue-500: #3b82f6;
+  --palette-blue-600: #2563eb;
+  --palette-blue-700: #1d4ed8;
+  --palette-blue-800: #1e40af;
+  --palette-blue-900: #1e3a8a;
+
+  /* Gray (neutral) */
+  --palette-gray-0:   #ffffff;
+  --palette-gray-50:  #f9fafb;
+  --palette-gray-100: #f3f4f6;
+  --palette-gray-200: #e5e7eb;
+  --palette-gray-300: #d1d5db;
+  --palette-gray-400: #9ca3af;
+  --palette-gray-500: #6b7280;
+  --palette-gray-600: #4b5563;
+  --palette-gray-700: #374151;
+  --palette-gray-800: #1f2937;
+  --palette-gray-900: #111827;
+  --palette-gray-950: #030712;
+
+  /* Red */
+  --palette-red-50:  #fef2f2;
+  --palette-red-200: #fecaca;
+  --palette-red-400: #f87171;
+  --palette-red-500: #ef4444;
+  --palette-red-600: #dc2626;
+  --palette-red-700: #b91c1c;
+
+  /* Green */
+  --palette-green-50:  #f0fdf4;
+  --palette-green-200: #bbf7d0;
+  --palette-green-400: #4ade80;
+  --palette-green-500: #22c55e;
+  --palette-green-600: #16a34a;
+}
+
+/* ============================================================
+   SEMANTIC TOKENS — use these in component CSS
+   light-dark() resolves automatically based on color-scheme
+   ============================================================ */
+:root {
+  color-scheme: light dark;
+
+  /* ── Text ──────────────────────────────────────────────── */
+  --color-text-primary:    light-dark(var(--palette-gray-900), #e8eaf0);
+  --color-text-secondary:  light-dark(var(--palette-gray-700), var(--palette-gray-300));
+  --color-text-muted:      light-dark(var(--palette-gray-500), var(--palette-gray-400));
+  --color-text-hint:       light-dark(var(--palette-gray-400), var(--palette-gray-500));
+  --color-text-inverse:    light-dark(var(--palette-gray-0),   var(--palette-gray-900));
+  --color-text-link:       light-dark(var(--palette-blue-600), var(--palette-blue-400));
+  --color-text-link-hover: light-dark(var(--palette-blue-700), var(--palette-blue-300));
+  --color-text-danger:     light-dark(var(--palette-red-600),  var(--palette-red-400));
+  --color-text-success:    light-dark(var(--palette-green-600),var(--palette-green-400));
+
+  /* ── Backgrounds ───────────────────────────────────────── */
+  --color-bg-base:    light-dark(var(--palette-gray-0),   #0f1117);
+  --color-bg-subtle:  light-dark(var(--palette-gray-50),  #171b26);
+  --color-bg-surface: light-dark(var(--palette-gray-0),   #1d2130);
+  --color-bg-raised:  light-dark(var(--palette-gray-100), #252b3d);
+  --color-bg-overlay: light-dark(var(--palette-gray-200), #2e3550);
+
+  /* ── Borders ───────────────────────────────────────────── */
+  --color-border:        light-dark(var(--palette-gray-200), #2a3047);
+  --color-border-strong: light-dark(var(--palette-gray-300), #3a4260);
+  --color-border-focus:  light-dark(var(--palette-blue-600), var(--palette-blue-400));
+
+  /* ── Brand / Primary (blue) ────────────────────────────── */
+  --color-primary:        light-dark(var(--palette-blue-600), var(--palette-blue-500));
+  --color-primary-hover:  light-dark(var(--palette-blue-700), var(--palette-blue-400));
+  --color-primary-active: light-dark(var(--palette-blue-800), var(--palette-blue-300));
+  --color-primary-subtle: light-dark(var(--palette-blue-50),  #162040);
+  --color-primary-border: light-dark(var(--palette-blue-200), #1e3268);
+  --color-primary-fg:     light-dark(var(--palette-gray-0),   var(--palette-gray-900));
+  --color-focus-ring:     light-dark(rgba(37,99,235,.18),     rgba(96,165,250,.25));
+
+  /* ── Danger (red) ──────────────────────────────────────── */
+  --color-danger:        light-dark(var(--palette-red-600),  var(--palette-red-500));
+  --color-danger-hover:  light-dark(var(--palette-red-700),  var(--palette-red-400));
+  --color-danger-subtle: light-dark(var(--palette-red-50),   #2a1212);
+  --color-danger-border: light-dark(var(--palette-red-200),  #5c1e1e);
+  --color-danger-text:   light-dark(var(--palette-red-600),  var(--palette-red-400));
+  --color-danger-fg:     light-dark(var(--palette-gray-0),   var(--palette-gray-0));
+
+  /* ── Success (green) ───────────────────────────────────── */
+  --color-success:        light-dark(var(--palette-green-600), var(--palette-green-500));
+  --color-success-subtle: light-dark(var(--palette-green-50),  #0c2418);
+  --color-success-border: light-dark(var(--palette-green-200), #1a4a28);
+  --color-success-text:   light-dark(var(--palette-green-600), var(--palette-green-400));
+
+  /* ── Navigation ────────────────────────────────────────── */
+  --color-nav-bg:     light-dark(var(--palette-gray-0),   #141720);
+  --color-nav-border: light-dark(var(--palette-gray-200), #252b3d);
+}
+
+/* ============================================================
+   SPACING — 4px base unit
+   ============================================================ */
+:root {
+  --space-1:  0.25rem;   /*  4px */
+  --space-2:  0.5rem;    /*  8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+:root {
+  /* Families */
+  --font-body:    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+
+  /* Sizes */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  1.875rem;  /* 30px */
+  --text-4xl:  2.25rem;   /* 36px */
+
+  /* Line heights */
+  --leading-tight:   1.25;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+
+  /* Weights */
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Tracking */
+  --tracking-tight:  -0.015em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.025em;
+}
+
+/* ============================================================
+   RADII, SHADOWS, Z-INDEX, LAYOUT
+   ============================================================ */
+:root {
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+
+  --z-nav:     100;
+  --z-modal:   200;
+  --z-tooltip: 300;
+
+  --content-max-width: 640px;
+}
+
+/* ============================================================
+   BASE RESET & DEFAULTS
+   ============================================================ */
+
 *,
 *::before,
 *::after {
@@ -9,13 +191,15 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  color-scheme: light dark;
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  color: #111;
-  background-color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
 }
 
 img,

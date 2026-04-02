@@ -3,15 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background-color: #f5f5f5;
+  padding: var(--space-4);
+  background-color: var(--color-bg-subtle);
 }
 
 .card {
   width: 100%;
   max-width: 400px;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
 }
