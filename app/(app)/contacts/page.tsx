@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { getContacts } from '@/lib/data/contacts'
+
+export const metadata: Metadata = {
+  title: 'Contacts',
+}
 import ContactList from '@/components/ContactList'
 import styles from './contacts.module.css'
 import Link from 'next/link'

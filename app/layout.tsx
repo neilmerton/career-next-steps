@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Career Next Steps',
+  title: {
+    template: '%s | Career Next Steps',
+    default: 'Career Next Steps',
+  },
   description: 'Track your job applications and recruitment conversations',
 }
 

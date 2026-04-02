@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { signIn } from '@/lib/actions/auth'
+
+export const metadata: Metadata = {
+  title: 'Log In',
+}
 import styles from '../form.module.css'
 
 interface Props {

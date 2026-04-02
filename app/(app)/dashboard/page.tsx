@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { getDashboardData } from '@/lib/data/dashboard'
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+}
 import StatusSummary from '@/components/StatusSummary'
 import UpcomingContacts from '@/components/UpcomingContacts'
 import LatestUpdates from '@/components/LatestUpdates'

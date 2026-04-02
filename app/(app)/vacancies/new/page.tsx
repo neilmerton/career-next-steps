@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { getContactsForSelect } from '@/lib/data/vacancies'
+
+export const metadata: Metadata = {
+  title: 'Add Vacancy',
+}
 import { createVacancy } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
 import styles from './new.module.css'

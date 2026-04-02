@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { getVacancies } from '@/lib/data/vacancies'
+
+export const metadata: Metadata = {
+  title: 'Job Vacancies',
+}
 import VacancyList from '@/components/VacancyList'
 import styles from './vacancies.module.css'
 import Link from 'next/link'

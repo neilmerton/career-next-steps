@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { resetPassword } from '@/lib/actions/auth'
+
+export const metadata: Metadata = {
+  title: 'Reset Password',
+}
 import styles from '../form.module.css'
 
 interface Props {

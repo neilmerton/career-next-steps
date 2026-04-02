@@ -1,4 +1,9 @@
+import type { Metadata } from 'next'
 import { createContact } from '@/lib/actions/contacts'
+
+export const metadata: Metadata = {
+  title: 'Add Contact',
+}
 import styles from './new.module.css'
 import Link from 'next/link'
 
