@@ -97,6 +97,7 @@
   --color-text-inverse: light-dark(var(--palette-gray-0), var(--palette-gray-900));
   --color-text-link: light-dark(var(--palette-blue-600), var(--palette-blue-400));
   --color-text-link-hover: light-dark(var(--palette-blue-700), var(--palette-blue-300));
+  --color-text-meta: light-dark(var(--palette-green-900), var(--palette-green-200));
   --color-text-danger: light-dark(var(--palette-red-600), var(--palette-red-400));
   --color-text-success: light-dark(var(--palette-green-600), var(--palette-green-400));
 
