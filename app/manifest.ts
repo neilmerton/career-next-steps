@@ -4,11 +4,12 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Career Next Steps',
     short_name: 'CNS',
-    description: 'A Progressive Web App built with Next.js',
-    start_url: '/',
+    description: 'Job vacancy and contacts management system',
+    start_url: '/?source=pwa',
+    scope: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#000000',
+    background_color: '#171b26',
+    theme_color: '#2563eb',
     icons: [
       {
         src: '/web-app-manifest-192x192.png',
