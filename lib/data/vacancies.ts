@@ -11,6 +11,17 @@ export async function getVacancies(): Promise<JobVacancy[]> {
   return data ?? []
 }
 
+export async function getVacancyTitle(id: string): Promise<string | null> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('job_vacancies')
+    .select('title')
+    .eq('id', id)
+    .single()
+
+  return data?.title ?? null
+}
+
 export async function getVacancy(id: string): Promise<{
   vacancy: JobVacancy
   updates: Update[]

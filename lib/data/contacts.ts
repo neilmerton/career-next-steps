@@ -16,6 +16,17 @@ export async function getContacts(): Promise<Contact[]> {
   })
 }
 
+export async function getContactName(id: string): Promise<string | null> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('contacts')
+    .select('name')
+    .eq('id', id)
+    .single()
+
+  return data?.name ?? null
+}
+
 export async function getContact(id: string): Promise<{ contact: Contact; updates: Update[] } | null> {
   const supabase = await createClient()
 

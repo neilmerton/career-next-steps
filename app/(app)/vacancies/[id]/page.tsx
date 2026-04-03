@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
-import { getVacancy } from '@/lib/data/vacancies'
+import { getVacancy, getVacancyTitle } from '@/lib/data/vacancies'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
 import { formatDateTime } from '@/lib/utils/dates'
@@ -15,14 +14,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  const supabase = await createClient()
-  const { data } = await supabase
-    .from('job_vacancies')
-    .select('title')
-    .eq('id', id)
-    .single()
-
-  return { title: data?.title ?? 'Vacancy' }
+  const title = await getVacancyTitle(id)
+  return { title: title ?? 'Vacancy' }
 }
 
 export default async function VacancyDetailPage({ params, searchParams }: Props) {

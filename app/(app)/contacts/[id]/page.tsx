@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
-import { getContact } from '@/lib/data/contacts'
+import { getContact, getContactName } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate, formatDateTime } from '@/lib/utils/dates'
 import styles from './detail.module.css'
@@ -14,14 +13,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  const supabase = await createClient()
-  const { data } = await supabase
-    .from('contacts')
-    .select('name')
-    .eq('id', id)
-    .single()
-
-  return { title: data?.name ?? 'Contact' }
+  const name = await getContactName(id)
+  return { title: name ?? 'Contact' }
 }
 
 export default async function ContactDetailPage({ params, searchParams }: Props) {
