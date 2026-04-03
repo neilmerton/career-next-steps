@@ -30,6 +30,8 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
   const boundDeleteContact = deleteContact.bind(null, id)
   const boundAddUpdate = addContactUpdate.bind(null, id)
 
+  const now = new Date().toISOString().slice(0, 16)
+
   return (
     <div className={styles.page}>
       <Link href="/contacts" className={styles.back}>← Contacts</Link>
@@ -53,7 +55,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
             <div className="form-field">
               <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
               <input
-                id="occurred_at" name="occurred_at" type="datetime-local"
+                id="occurred_at" name="occurred_at" type="datetime-local" defaultValue={now}
               />
             </div>
             <div className="form-field">
