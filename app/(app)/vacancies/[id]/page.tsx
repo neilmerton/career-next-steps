@@ -31,7 +31,6 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
   const boundDeleteVacancy = deleteVacancy.bind(null, id)
   const boundAddUpdate = addVacancyUpdate.bind(null, id)
 
-  const now = new Date().toISOString().slice(0, 16)
 
   return (
     <div className={styles.page}>
@@ -63,7 +62,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
             </div>
             <div className="form-field">
               <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
-              <input id="occurred_at" name="occurred_at" type="datetime-local" defaultValue={now} />
+              <input id="occurred_at" name="occurred_at" type="datetime-local" placeholder=" " />
             </div>
           </div>
 
