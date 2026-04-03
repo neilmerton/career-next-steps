@@ -17,25 +17,24 @@ export default async function SignUpPage({ searchParams }: Props) {
     <>
       <h1 className={styles.title}>Create account</h1>
 
-      {error && <p className={styles.error}>{error}</p>}
-      {message && <p className={styles.message}>{message}</p>}
+      {error && <p className="alert-error">{error}</p>}
+      {message && <p className="alert-success">{message}</p>}
 
       {!message && (
-        <form action={signUp} className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="email" className={styles.label}>Email</label>
+        <form action={signUp} className="form-stack">
+          <div className="form-field">
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               id="email"
               name="email"
               type="email"
               autoComplete="email"
               required
-              className={styles.input}
             />
           </div>
 
-          <div className={styles.field}>
-            <label htmlFor="password" className={styles.label}>Password</label>
+          <div className="form-field">
+            <label htmlFor="password" className="form-label">Password</label>
             <input
               id="password"
               name="password"
@@ -43,11 +42,10 @@ export default async function SignUpPage({ searchParams }: Props) {
               autoComplete="new-password"
               required
               minLength={8}
-              className={styles.input}
             />
           </div>
 
-          <button type="submit" className={styles.submit}>Create account</button>
+          <button type="submit" className={`btn-primary ${styles.submit}`}>Create account</button>
         </form>
       )}
 

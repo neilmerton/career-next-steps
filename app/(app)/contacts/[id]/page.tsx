@@ -34,41 +34,38 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
     <div className={styles.page}>
       <Link href="/contacts" className={styles.back}>← Contacts</Link>
 
-      {error && <p className={styles.error}>{error}</p>}
-      {message && <p className={styles.message}>{message}</p>}
+      {error && <p className="alert-error">{error}</p>}
+      {message && <p className="alert-success">{message}</p>}
 
       {/* ── Add update ──────────────────────────────────── */}
       <section className={styles.section}>
         <h1 className={styles.title}>{contact.name}</h1>
         <h2 className={styles.sectionTitle}>Add update</h2>
-        <form action={boundAddUpdate} className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="notes" className={styles.label}>Notes <span className={styles.required}>*</span></label>
+        <form action={boundAddUpdate} className="form-stack">
+          <div className="form-field">
+            <label htmlFor="notes" className="form-label">Notes <span className="form-required">*</span></label>
             <textarea
               id="notes" name="notes" rows={3} required
-              className={styles.textarea}
             />
           </div>
 
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="occurred_at" className={styles.label}>Date &amp; time <span className={styles.hint}>(leave blank for now)</span></label>
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
               <input
                 id="occurred_at" name="occurred_at" type="datetime-local"
-                className={styles.input}
               />
             </div>
-            <div className={styles.field}>
-              <label htmlFor="new_next_contact_date" className={styles.label}>New next contact date <span className={styles.hint}>(optional)</span></label>
+            <div className="form-field">
+              <label htmlFor="new_next_contact_date" className="form-label">New next contact date <span className="form-hint">(optional)</span></label>
               <input
                 id="new_next_contact_date" name="new_next_contact_date" type="date"
-                className={styles.input}
               />
             </div>
           </div>
 
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.saveButton}>Add update</button>
+          <div className="form-actions">
+            <button type="submit" className="btn-primary">Add update</button>
           </div>
         </form>
       </section>
@@ -96,56 +93,51 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
       {/* ── Edit contact ────────────────────────────────── */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Edit contact</h2>
-        <form action={boundUpdateContact} className={styles.form}>
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="name" className={styles.label}>Name <span className={styles.required}>*</span></label>
+        <form action={boundUpdateContact} className="form-stack">
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="name" className="form-label">Name <span className="form-required">*</span></label>
               <input
                 id="name" name="name" type="text"
                 defaultValue={contact.name} required
-                className={styles.input}
               />
             </div>
-            <div className={styles.field}>
-              <label htmlFor="next_contact_date" className={styles.label}>Next contact date</label>
+            <div className="form-field">
+              <label htmlFor="next_contact_date" className="form-label">Next contact date</label>
               <input
                 id="next_contact_date" name="next_contact_date" type="date"
                 defaultValue={contact.next_contact_date ?? ''}
-                className={styles.input}
               />
             </div>
           </div>
 
-          <div className={styles.field}>
-            <label htmlFor="company" className={styles.label}>Company</label>
+          <div className="form-field">
+            <label htmlFor="company" className="form-label">Company</label>
             <input
               id="company" name="company" type="text"
               defaultValue={contact.company ?? ''}
-              className={styles.input}
             />
           </div>
 
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="email" className={styles.label}>Email</label>
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="email" className="form-label">Email</label>
               <input
                 id="email" name="email" type="email"
                 defaultValue={contact.email ?? ''}
-                className={styles.input}
               />
             </div>
-            <div className={styles.field}>
-              <label htmlFor="phone" className={styles.label}>Phone</label>
+            <div className="form-field">
+              <label htmlFor="phone" className="form-label">Phone</label>
               <input
                 id="phone" name="phone" type="tel"
                 defaultValue={contact.phone ?? ''}
-                className={styles.input}
               />
             </div>
           </div>
 
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.saveButton}>Save changes</button>
+          <div className="form-actions">
+            <button type="submit" className="btn-primary">Save changes</button>
           </div>
         </form>
       </section>
@@ -157,7 +149,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
           This will permanently delete the contact and all associated updates.
         </p>
         <form action={boundDeleteContact}>
-          <button type="submit" className={styles.deleteButton}>Delete contact</button>
+          <button type="submit" className="btn-danger">Delete contact</button>
         </form>
       </section>
     </div>

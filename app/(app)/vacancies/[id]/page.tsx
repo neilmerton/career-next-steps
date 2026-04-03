@@ -35,38 +35,38 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
     <div className={styles.page}>
       <Link href="/vacancies" className={styles.back}>← Job Vacancies</Link>
 
-      {error && <p className={styles.error}>{error}</p>}
-      {message && <p className={styles.message}>{message}</p>}
+      {error && <p className="alert-error">{error}</p>}
+      {message && <p className="alert-success">{message}</p>}
 
       {/* ── Add update / change status ───────────────────── */}
       <section className={styles.section}>
         <h1 className={styles.title}>{vacancy.title}</h1>
         {vacancy.description && <p className={styles.description}>{vacancy.description}</p>}
         <h2 className={styles.sectionTitle}>Add update</h2>
-        <form action={boundAddUpdate} className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="notes" className={styles.label}>Notes <span className={styles.required}>*</span></label>
-            <textarea id="notes" name="notes" rows={3} required className={styles.textarea} />
+        <form action={boundAddUpdate} className="form-stack">
+          <div className="form-field">
+            <label htmlFor="notes" className="form-label">Notes <span className="form-required">*</span></label>
+            <textarea id="notes" name="notes" rows={3} required />
           </div>
 
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="new_status" className={styles.label}>Change status <span className={styles.hint}>(optional)</span></label>
-              <select id="new_status" name="new_status" className={styles.select}>
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="new_status" className="form-label">Change status <span className="form-hint">(optional)</span></label>
+              <select id="new_status" name="new_status">
                 <option value="">— No change —</option>
                 {ALL_STATUSES.map((s) => (
                   <option key={s} value={s}>{STATUS_LABELS[s]}</option>
                 ))}
               </select>
             </div>
-            <div className={styles.field}>
-              <label htmlFor="occurred_at" className={styles.label}>Date &amp; time <span className={styles.hint}>(leave blank for now)</span></label>
-              <input id="occurred_at" name="occurred_at" type="datetime-local" className={styles.input} />
+            <div className="form-field">
+              <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
+              <input id="occurred_at" name="occurred_at" type="datetime-local" />
             </div>
           </div>
 
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.saveButton}>Add update</button>
+          <div className="form-actions">
+            <button type="submit" className="btn-primary">Add update</button>
           </div>
         </form>
       </section>
@@ -94,68 +94,64 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
       {/* ── Edit vacancy ─────────────────────────────────── */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Edit job vacancy</h2>
-        <form action={boundUpdateVacancy} className={styles.form}>
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="title" className={styles.label}>Job title <span className={styles.required}>*</span></label>
+        <form action={boundUpdateVacancy} className="form-stack">
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="title" className="form-label">Job title <span className="form-required">*</span></label>
               <input
                 id="title" name="title" type="text"
                 defaultValue={vacancy.title} required
-                className={styles.input}
               />
             </div>
-            <div className={styles.field}>
-              <label htmlFor="company" className={styles.label}>Company</label>
+            <div className="form-field">
+              <label htmlFor="company" className="form-label">Company</label>
               <input
                 id="company" name="company" type="text"
                 defaultValue={vacancy.company ?? ''}
-                className={styles.input}
               />
             </div>
           </div>
 
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="status" className={styles.label}>Status</label>
-              <select id="status" name="status" defaultValue={vacancy.status} className={styles.select}>
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="status" className="form-label">Status</label>
+              <select id="status" name="status" defaultValue={vacancy.status}>
                 {ALL_STATUSES.map((s) => (
                   <option key={s} value={s}>{STATUS_LABELS[s]}</option>
                 ))}
               </select>
             </div>
-            <div className={styles.field}>
-              <label htmlFor="date_applied" className={styles.label}>Date applied</label>
+            <div className="form-field">
+              <label htmlFor="date_applied" className="form-label">Date applied</label>
               <input
                 id="date_applied" name="date_applied" type="date"
                 defaultValue={vacancy.date_applied ?? ''}
-                className={styles.input}
               />
             </div>
           </div>
 
-          <div className={styles.fieldRow}>
-            <div className={styles.field}>
-              <label htmlFor="source" className={styles.label}>Source</label>
-              <select id="source" name="source" defaultValue={vacancy.source ?? ''} className={styles.select}>
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="source" className="form-label">Source</label>
+              <select id="source" name="source" defaultValue={vacancy.source ?? ''}>
                 <option value="">— Select —</option>
                 {ALL_SOURCES.map((s) => (
                   <option key={s} value={s}>{SOURCE_LABELS[s]}</option>
                 ))}
               </select>
             </div>
-            <div className={styles.field}>
-              <label htmlFor="source_other" className={styles.label}>Source detail <span className={styles.hint}>(if Other)</span></label>
+            <div className="form-field">
+              <label htmlFor="source_other" className="form-label">Source detail <span className="form-hint">(if Other)</span></label>
               <input
                 id="source_other" name="source_other" type="text"
                 defaultValue={vacancy.source_other ?? ''}
-                className={styles.input}
               />
             </div>
           </div>
 
-          <div className={styles.field}>
-            <label htmlFor="contact_id" className={styles.label}>Contact</label>
-            <select id="contact_id" name="contact_id" defaultValue={vacancy.contact_id ?? ''} className={styles.select}>
+          <div className="form-field">
+            <label htmlFor="contact_id" className="form-label">Contact</label>
+            <select id="contact_id" name="contact_id" defaultValue={vacancy.contact_id ?? ''}>
               <option value="">— None —</option>
               {contacts.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
@@ -163,17 +159,16 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
             </select>
           </div>
 
-          <div className={styles.field}>
-            <label htmlFor="description" className={styles.label}>Notes / description</label>
+          <div className="form-field">
+            <label htmlFor="description" className="form-label">Notes / description</label>
             <textarea
               id="description" name="description" rows={6}
               defaultValue={vacancy.description ?? ''}
-              className={styles.textarea}
             />
           </div>
 
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.saveButton}>Save changes</button>
+          <div className="form-actions">
+            <button type="submit" className="btn-primary">Save changes</button>
           </div>
         </form>
       </section>
@@ -186,7 +181,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           The linked contact will not be affected.
         </p>
         <form action={boundDeleteVacancy}>
-          <button type="submit" className={styles.deleteButton}>Delete vacancy</button>
+          <button type="submit" className="btn-danger">Delete vacancy</button>
         </form>
       </section>
     </div>

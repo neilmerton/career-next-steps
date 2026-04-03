@@ -4,77 +4,10 @@
   font-weight: var(--weight-semibold);
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.label {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--color-text-secondary);
-}
-
-.input {
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.input:focus {
-  outline: none;
-  border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px var(--color-focus-ring);
-}
-
+/* Full-width submit used on auth forms only */
 .submit {
   margin-top: var(--space-2);
-  padding: var(--space-2-5) var(--space-4);
-  background-color: var(--color-primary);
-  color: var(--color-primary-fg);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--weight-medium);
-  cursor: pointer;
   width: 100%;
-}
-
-.submit:hover {
-  background-color: var(--color-primary-hover);
-}
-
-.submit:active {
-  background-color: var(--color-primary-active);
-}
-
-.error {
-  padding: var(--space-2-5) var(--space-3);
-  background-color: var(--color-danger-subtle);
-  border: 1px solid var(--color-danger-border);
-  border-radius: var(--radius-md);
-  color: var(--color-danger-text);
-  font-size: var(--text-sm);
-}
-
-.message {
-  padding: var(--space-2-5) var(--space-3);
-  background-color: var(--color-success-subtle);
-  border: 1px solid var(--color-success-border);
-  border-radius: var(--radius-md);
-  color: var(--color-success-text);
-  font-size: var(--text-sm);
 }
 
 .footer {

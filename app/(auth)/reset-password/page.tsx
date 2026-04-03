@@ -17,24 +17,23 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
     <>
       <h1 className={styles.title}>Reset password</h1>
 
-      {error && <p className={styles.error}>{error}</p>}
-      {message && <p className={styles.message}>{message}</p>}
+      {error && <p className="alert-error">{error}</p>}
+      {message && <p className="alert-success">{message}</p>}
 
       {!message && (
-        <form action={resetPassword} className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="email" className={styles.label}>Email</label>
+        <form action={resetPassword} className="form-stack">
+          <div className="form-field">
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               id="email"
               name="email"
               type="email"
               autoComplete="email"
               required
-              className={styles.input}
             />
           </div>
 
-          <button type="submit" className={styles.submit}>Send reset link</button>
+          <button type="submit" className={`btn-primary ${styles.submit}`}>Send reset link</button>
         </form>
       )}
 

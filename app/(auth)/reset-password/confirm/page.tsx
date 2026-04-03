@@ -17,11 +17,11 @@ export default async function ResetPasswordConfirmPage({ searchParams }: Props) 
     <>
       <h1 className={styles.title}>Set new password</h1>
 
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className="alert-error">{error}</p>}
 
-      <form action={updatePassword} className={styles.form}>
-        <div className={styles.field}>
-          <label htmlFor="password" className={styles.label}>New password</label>
+      <form action={updatePassword} className="form-stack">
+        <div className="form-field">
+          <label htmlFor="password" className="form-label">New password</label>
           <input
             id="password"
             name="password"
@@ -29,12 +29,11 @@ export default async function ResetPasswordConfirmPage({ searchParams }: Props) 
             autoComplete="new-password"
             required
             minLength={8}
-            className={styles.input}
           />
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="confirmPassword" className={styles.label}>Confirm new password</label>
+        <div className="form-field">
+          <label htmlFor="confirmPassword" className="form-label">Confirm new password</label>
           <input
             id="confirmPassword"
             name="confirmPassword"
@@ -42,11 +41,10 @@ export default async function ResetPasswordConfirmPage({ searchParams }: Props) 
             autoComplete="new-password"
             required
             minLength={8}
-            className={styles.input}
           />
         </div>
 
-        <button type="submit" className={styles.submit}>Update password</button>
+        <button type="submit" className={`btn-primary ${styles.submit}`}>Update password</button>
       </form>
     </>
   )

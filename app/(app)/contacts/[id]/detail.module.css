@@ -16,26 +16,6 @@
   color: var(--color-text-primary);
 }
 
-.error {
-  padding: var(--space-2-5) var(--space-3);
-  background-color: var(--color-danger-subtle);
-  border: 1px solid var(--color-danger-border);
-  border-radius: var(--radius-md);
-  color: var(--color-danger-text);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-4);
-}
-
-.message {
-  padding: var(--space-2-5) var(--space-3);
-  background-color: var(--color-success-subtle);
-  border: 1px solid var(--color-success-border);
-  border-radius: var(--radius-md);
-  color: var(--color-success-text);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-4);
-}
-
 /* ── Sections ──────────────────────────────────────────── */
 
 .section {
@@ -55,99 +35,6 @@
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   color: var(--color-text-primary);
-}
-
-/* ── Form ──────────────────────────────────────────────── */
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3-5);
-}
-
-.fieldRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3-5);
-}
-
-@media (max-width: 480px) {
-  .fieldRow {
-    grid-template-columns: 1fr;
-  }
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.label {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--color-text-secondary);
-}
-
-.required {
-  color: var(--color-danger-text);
-}
-
-.hint {
-  font-weight: var(--weight-normal);
-  color: var(--color-text-hint);
-}
-
-.input {
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.input:focus {
-  outline: none;
-  border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px var(--color-focus-ring);
-}
-
-.textarea {
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  width: 100%;
-  box-sizing: border-box;
-  resize: vertical;
-  font-family: inherit;
-}
-
-.textarea:focus {
-  outline: none;
-  border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px var(--color-focus-ring);
-}
-
-.formActions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.saveButton {
-  padding: var(--space-2) var(--space-5);
-  background-color: var(--color-primary);
-  color: var(--color-primary-fg);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--weight-medium);
-  cursor: pointer;
-}
-
-.saveButton:hover {
-  background-color: var(--color-primary-hover);
 }
 
 /* ── Timeline ──────────────────────────────────────────── */
@@ -209,19 +96,4 @@
   margin: 0 0 var(--space-4);
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
-}
-
-.deleteButton {
-  padding: var(--space-2) var(--space-4);
-  background-color: var(--color-danger);
-  color: var(--color-danger-fg);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--weight-medium);
-  cursor: pointer;
-}
-
-.deleteButton:hover {
-  background-color: var(--color-danger-hover);
 }
