@@ -8,6 +8,7 @@
   align-items: center;
   background-color: var(--color-nav-bg);
   border-bottom: 1px solid var(--color-nav-border);
+  border-top: none;
   display: flex;
   gap: var(--space-6);
   justify-content: space-between;
@@ -75,6 +76,11 @@
     position: fixed;
     right: 0;
     z-index: var(--z-nav);
+  }
+
+  body.pwa-ios .shell .nav {
+    border-bottom: 1px solid var(--color-nav-border);
+    padding-block-end: var(--space-12);
   }
 
   .navLinks {
