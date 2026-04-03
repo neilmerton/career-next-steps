@@ -78,9 +78,11 @@
     z-index: var(--z-nav);
   }
 
-  body.pwa-ios .shell .nav {
-    border-bottom: 1px solid var(--color-nav-border);
-    padding-block-end: var(--space-12);
+  @media (display-mode: standalone) {
+    .nav {
+      border-bottom: 1px solid var(--color-nav-border);
+      padding-block-end: max(var(--space-12), env(safe-area-inset-bottom));
+    }
   }
 
   .navLinks {
