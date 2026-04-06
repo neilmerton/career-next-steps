@@ -1,4 +1,5 @@
 import type { Contact } from '@/types/database'
+import Link from 'next/link'
 import ContactCard from './ContactCard'
 import styles from './ContactList.module.css'
 
@@ -8,7 +9,7 @@ interface Props {
 
 export default function ContactList({ contacts }: Props) {
   if (contacts.length === 0) {
-    return <p className={styles.empty}>No contacts yet. <a href="/contacts/new">Add one</a>.</p>
+    return <p className={styles.empty}>No contacts yet. <Link href="/contacts/new">Add one</Link>.</p>
   }
 
   return (

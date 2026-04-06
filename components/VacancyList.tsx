@@ -1,5 +1,6 @@
-import type { JobVacancy, VacancyStatus } from '@/types/database'
 import { STATUS_LABELS, STATUS_ORDER } from '@/lib/utils/vacancies'
+import type { JobVacancy, VacancyStatus } from '@/types/database'
+import Link from 'next/link'
 import VacancyCard from './VacancyCard'
 import styles from './VacancyList.module.css'
 
@@ -11,7 +12,7 @@ export default function VacancyList({ vacancies }: Props) {
   if (vacancies.length === 0) {
     return (
       <p className={styles.empty}>
-        No vacancies yet. <a href="/vacancies/new">Add one</a>.
+        No vacancies yet. <Link href="/vacancies/new">Add one</Link>.
       </p>
     )
   }
