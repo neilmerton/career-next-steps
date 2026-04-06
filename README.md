@@ -1,6 +1,8 @@
 # Career Next Steps
 
-A web application for managing your job search. Track applications, monitor status changes, and stay on top of recruiter relationships — all in one place.
+A web application for managing your job search. Track applications, monitor status changes, and stay on top of recruiter relationships, all in one place.
+
+I'm using this to improve my job applications, and also to improve my working experience using Next.js (and React) along with using Claude.ai in the modern world of Frontend engineering.
 
 ## Features
 
