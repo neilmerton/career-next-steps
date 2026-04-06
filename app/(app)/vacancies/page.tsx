@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { getVacancies } from '@/lib/data/vacancies'
-
-export const metadata: Metadata = {
-  title: 'Job Vacancies',
-}
 import VacancyList from '@/components/VacancyList'
 import styles from './vacancies.module.css'
 import Link from 'next/link'
 
+export const metadata: Metadata = {
+  title: 'Job Vacancies',
+}
 export default async function VacanciesPage() {
   const vacancies = await getVacancies()
 

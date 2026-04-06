@@ -5,9 +5,9 @@
 }
 
 .title {
-  margin: 0 0 var(--space-6);
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
+  margin: 0 0 var(--space-6);
 }
 
 .section:not(:last-child) {

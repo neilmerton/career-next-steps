@@ -1,7 +1,19 @@
 .page {
-  max-width: var(--content-max-width);
   margin: 0 auto;
+  max-width: var(--content-max-width);
   padding: var(--space-6) 0;
+}
+
+.pageHeader {
+  align-items: center;
+  display: flex;
+  margin: 0 0 var(--space-6);
+  min-height: 2.5rem;
+}
+
+.title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
 }
 
 .skeleton {
@@ -14,6 +26,11 @@
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }

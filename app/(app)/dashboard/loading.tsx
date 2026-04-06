@@ -1,12 +1,11 @@
-import styles from './loading.module.css'
+import Loading, { Skeleton } from '@/components/Loading'
 
-export default function Loading() {
+export default function DashboardLoading() {
   return (
-    <div className={styles.page}>
-      <div className={styles.skeleton} style={{ width: '8rem', height: '2rem', marginBottom: '2rem' }} />
-      <div className={styles.skeleton} style={{ height: '7rem', marginBottom: '2rem' }} />
-      <div className={styles.skeleton} style={{ height: '5rem', marginBottom: '2rem' }} />
-      <div className={styles.skeleton} style={{ height: '10rem' }} />
-    </div>
+    <Loading title="Dashboard">
+      <Skeleton style={{ height: '7rem', marginBottom: '2rem' }} />
+      <Skeleton style={{ height: '5rem', marginBottom: '2rem' }} />
+      <Skeleton style={{ height: '10rem' }} />
+    </Loading>
   )
 }
