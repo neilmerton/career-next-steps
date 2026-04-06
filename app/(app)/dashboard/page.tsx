@@ -1,20 +1,22 @@
-import type { Metadata } from 'next'
-import { getDashboardData } from '@/lib/data/dashboard'
-
-export const metadata: Metadata = {
-  title: 'Dashboard',
-}
+import LatestUpdates from '@/components/LatestUpdates'
 import StatusSummary from '@/components/StatusSummary'
 import UpcomingContacts from '@/components/UpcomingContacts'
-import LatestUpdates from '@/components/LatestUpdates'
+import { getDashboardData } from '@/lib/data/dashboard'
+import type { Metadata } from 'next'
 import styles from './dashboard.module.css'
+
+const pageTitle = 'Dashboard'
+
+export const metadata: Metadata = {
+  title: pageTitle,
+}
 
 export default async function DashboardPage() {
   const { statusCounts, totalVacancies, upcomingContacts, latestUpdates } = await getDashboardData()
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Dashboard</h1>
+      <h1 className={styles.title}>{pageTitle}</h1>
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Vacancies by status</h2>

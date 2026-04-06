@@ -1,11 +1,13 @@
-import type { Metadata } from 'next'
-import { getVacancies } from '@/lib/data/vacancies'
 import VacancyList from '@/components/VacancyList'
-import styles from './vacancies.module.css'
+import { getVacancies } from '@/lib/data/vacancies'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import styles from './vacancies.module.css'
+
+const pageTitle = 'Job Vacancies'
 
 export const metadata: Metadata = {
-  title: 'Job Vacancies',
+  title: pageTitle,
 }
 export default async function VacanciesPage() {
   const vacancies = await getVacancies()
@@ -13,7 +15,7 @@ export default async function VacanciesPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Job Vacancies</h1>
+        <h1 className={styles.title}>{pageTitle}</h1>
         <Link href="/vacancies/new" className={styles.addButton}>Add vacancy</Link>
       </div>
       <VacancyList vacancies={vacancies} />
