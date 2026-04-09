@@ -66,6 +66,26 @@ Without `loading.tsx`, Next.js keeps the current page visible while the server p
 
 Do not add `loading.tsx` files to routes that use this data-fetching pattern.
 
+## Date & Time Formatting
+
+### `<DateTime>` component — always use for ISO datetime strings
+
+Use `components/DateTime.tsx` whenever rendering an ISO datetime string (e.g. `occurred_at` from the database). Never call `toLocaleTimeString`, `toLocaleDateString`, or utility functions like `formatTime`/`formatDateTime` in server components — the deployed server runs in UTC and will display the wrong time for users in other timezones.
+
+`<DateTime>` is a client component, so formatting happens in the browser using the user's local timezone.
+
+```tsx
+import DateTime from '@/components/DateTime'
+
+// Full date + time: "15 Apr 2026, 14:30"
+<DateTime isoStr={u.occurred_at} className={styles.timelineDate} />
+
+// Time only: "14:30"
+<DateTime isoStr={u.occurred_at} format="time" className={styles.date} />
+```
+
+`formatDate` in `lib/utils/dates.ts` is safe to use in server components because it operates on `YYYY-MM-DD` date-only strings with no time component.
+
 ### Adding a new query
 
 1. Add keys to `lib/queries/keys.ts` under the relevant domain.
