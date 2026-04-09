@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import { addDays } from '@/lib/utils/dates'
 import type { Contact, Update } from '@/types/database'
 
 export async function getContacts(): Promise<Contact[]> {
@@ -7,13 +6,9 @@ export async function getContacts(): Promise<Contact[]> {
   const { data } = await supabase
     .from('contacts')
     .select('*')
-    .order('created_at', { ascending: true })
+    .order('next_contact_date', { ascending: true, nullsFirst: false })
 
-  return (data ?? []).sort((a, b) => {
-    const aDate = a.next_contact_date ?? addDays(a.created_at.slice(0, 10), 10)
-    const bDate = b.next_contact_date ?? addDays(b.created_at.slice(0, 10), 10)
-    return aDate.localeCompare(bDate)
-  })
+  return data ?? []
 }
 
 export async function getContactName(id: string): Promise<string | null> {
