@@ -1,14 +1,17 @@
+'use client'
+
+import { useVacancies } from '@/lib/queries/vacancies'
 import { STATUS_LABELS, STATUS_ORDER } from '@/lib/utils/vacancies'
 import type { JobVacancy, VacancyStatus } from '@/types/database'
 import Link from 'next/link'
 import VacancyCard from './VacancyCard'
 import styles from './VacancyList.module.css'
 
-interface Props {
-  vacancies: JobVacancy[]
-}
+export default function VacancyList() {
+  const { data: vacancies = [], isPending } = useVacancies()
 
-export default function VacancyList({ vacancies }: Props) {
+  if (isPending) return null
+
   if (vacancies.length === 0) {
     return (
       <p className={styles.empty}>
@@ -17,7 +20,6 @@ export default function VacancyList({ vacancies }: Props) {
     )
   }
 
-  // Group by status, preserving display order
   const grouped = STATUS_ORDER.reduce<Record<VacancyStatus, JobVacancy[]>>(
     (acc, status) => {
       acc[status] = vacancies.filter((v) => v.status === status)

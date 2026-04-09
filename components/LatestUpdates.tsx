@@ -1,21 +1,25 @@
-import Link from 'next/link'
+'use client'
+
+import { useDashboardData } from '@/lib/queries/dashboard'
 import { formatDateTime } from '@/lib/utils/dates'
 import { STATUS_LABELS } from '@/lib/utils/vacancies'
-import type { UpdateWithRelations } from '@/types/database'
+import Link from 'next/link'
 import styles from './LatestUpdates.module.css'
 
-interface Props {
-  updates: UpdateWithRelations[]
-}
+export default function LatestUpdates() {
+  const { data, isPending } = useDashboardData()
 
-export default function LatestUpdates({ updates }: Props) {
-  if (updates.length === 0) {
+  if (isPending || !data) return null
+
+  const { latestUpdates } = data
+
+  if (latestUpdates.length === 0) {
     return <p className={styles.empty}>No updates yet.</p>
   }
 
   return (
     <ol className={styles.list}>
-      {updates.map((u) => {
+      {latestUpdates.map((u) => {
         const isVacancy = u.job_vacancy_id !== null
         const href = isVacancy
           ? `/vacancies/${u.job_vacancy_id}`

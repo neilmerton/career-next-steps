@@ -4,7 +4,9 @@
       "mcp__context7__resolve-library-id",
       "mcp__context7__query-docs",
       "Bash(npm install:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(ls /Users/neilmerton/Code/Personal/career-next-steps/*.ts)",
+      "Bash(ls /Users/neilmerton/Code/Personal/career-next-steps/*.tsx)"
     ]
   }
 }
