@@ -25,7 +25,7 @@ export default function UpcomingContacts() {
             <Link href={`/contacts/${c.id}`} className={styles.name}>{c.name}</Link>
             {c.next_contact_date && (
               <span className={overdue ? styles.overdue : styles.due} suppressHydrationWarning>
-                {overdue ? 'Overdue — ' : 'Due '}
+                {overdue ?? 'Overdue — '}
                 {formatDate(c.next_contact_date)}
               </span>
             )}
