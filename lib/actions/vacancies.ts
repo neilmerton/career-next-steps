@@ -127,6 +127,7 @@ export async function updateVacancy(id: string, formData: FormData) {
 
   revalidatePath(`/vacancies/${id}`)
   revalidatePath('/vacancies')
+  revalidatePath('/dashboard')
   redirect(`/vacancies/${id}?message=Vacancy+updated`)
 }
 
@@ -142,6 +143,7 @@ export async function deleteVacancy(id: string) {
   }
 
   revalidatePath('/vacancies')
+  revalidatePath('/dashboard')
   redirect('/vacancies')
 }
 
@@ -188,5 +190,6 @@ export async function addVacancyUpdate(vacancyId: string, formData: FormData) {
 
   revalidatePath(`/vacancies/${vacancyId}`)
   revalidatePath('/vacancies')
+  revalidatePath('/dashboard')
   redirect(`/vacancies/${vacancyId}`)
 }

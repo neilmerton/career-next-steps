@@ -11,13 +11,13 @@ interface Props {
 export default function DateTime({ isoStr, format = 'datetime', className }: Props) {
   const date = new Date(isoStr)
   const formatted = format === 'time'
-    ? date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+    ? date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
     : date.toLocaleDateString(undefined, {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
-        hour: '2-digit',
+        hour: 'numeric',
         minute: '2-digit',
       })
-  return <time dateTime={isoStr} className={className}>{formatted}</time>
+  return <time dateTime={isoStr} className={className} suppressHydrationWarning>{formatted}</time>
 }

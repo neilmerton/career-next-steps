@@ -103,6 +103,7 @@ export async function updateContact(id: string, formData: FormData) {
 
   revalidatePath(`/contacts/${id}`)
   revalidatePath('/contacts')
+  revalidatePath('/dashboard')
   redirect(`/contacts/${id}?message=Contact+updated`)
 }
 
@@ -118,6 +119,7 @@ export async function deleteContact(id: string) {
   }
 
   revalidatePath('/contacts')
+  revalidatePath('/dashboard')
   redirect('/contacts')
 }
 
@@ -162,5 +164,6 @@ export async function addContactUpdate(contactId: string, formData: FormData) {
 
   revalidatePath(`/contacts/${contactId}`)
   revalidatePath('/contacts')
+  revalidatePath('/dashboard')
   redirect(`/contacts/${contactId}`)
 }
