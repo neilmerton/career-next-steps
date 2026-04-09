@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getContact, getContactName } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
-import { formatDate, formatDateTime } from '@/lib/utils/dates'
+import { formatDate } from '@/lib/utils/dates'
+import DateTime from '@/components/DateTime'
 import styles from './detail.module.css'
 
 interface Props {
@@ -78,7 +79,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
           <ol className={styles.timeline}>
             {updates.map((u) => (
               <li key={u.id} className={styles.timelineItem}>
-                <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
+                <DateTime isoStr={u.occurred_at} className={styles.timelineDate} />
                 <p className={styles.timelineNotes}>{u.notes}</p>
                 {u.new_next_contact_date && (
                   <p className={styles.timelineMeta}>
