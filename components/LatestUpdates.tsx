@@ -40,7 +40,7 @@ export default function LatestUpdates() {
                 {subject}
                 {sub && <span className={styles.sub}> — {sub}</span>}
               </Link>
-              <span className={styles.date}>{formatDateTime(u.occurred_at)}</span>
+              <span className={styles.date} suppressHydrationWarning>{formatDateTime(u.occurred_at)}</span>
             </div>
             <p className={styles.notes}>{u.notes}</p>
             {u.new_status && (
