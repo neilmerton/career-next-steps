@@ -12,9 +12,7 @@ export interface DashboardData {
 export async function getDashboardData(): Promise<DashboardData> {
   const supabase = await createClient()
 
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const todayStr = today.toISOString().slice(0, 10)
+  const todayStr = new Date().toISOString().slice(0, 10)
   const in3DaysStr = addDays(todayStr, 3)
 
   const [

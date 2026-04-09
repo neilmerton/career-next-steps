@@ -5,6 +5,12 @@ export function formatDate(dateStr: string): string {
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
+/** Format an ISO datetime string as "14:30" */
+export function formatTime(isoStr: string): string {
+  const date = new Date(isoStr)
+  return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+}
+
 /** Format an ISO datetime string as "15 Apr 2026, 14:30" */
 export function formatDateTime(isoStr: string): string {
   const date = new Date(isoStr)
