@@ -1,7 +1,8 @@
 'use client'
 
 import { useDashboardData } from '@/lib/queries/dashboard'
-import { formatDate, formatTime } from '@/lib/utils/dates'
+import { formatDate } from '@/lib/utils/dates'
+import DateTime from '@/components/DateTime'
 import { STATUS_LABELS } from '@/lib/utils/vacancies'
 import Link from 'next/link'
 import styles from './LatestUpdates.module.css'
@@ -53,7 +54,7 @@ export default function LatestUpdates() {
                       {subject}
                       {sub && <span className={styles.sub}> — {sub}</span>}
                     </Link>
-                    <span className={styles.date} suppressHydrationWarning>{formatTime(u.occurred_at)}</span>
+                    <DateTime isoStr={u.occurred_at} format="time" className={styles.date} />
                   </div>
                   <p className={styles.notes}>{u.notes}</p>
                   {u.new_status && (

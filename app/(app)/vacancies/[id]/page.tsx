@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getVacancy, getVacancyTitle } from '@/lib/data/vacancies'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
-import { formatDateTime } from '@/lib/utils/dates'
+import DateTime from '@/components/DateTime'
 import styles from './detail.module.css'
 
 interface Props {
@@ -79,7 +79,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           <ol className={styles.timeline}>
             {updates.map((u) => (
               <li key={u.id} className={styles.timelineItem}>
-                <span className={styles.timelineDate}>{formatDateTime(u.occurred_at)}</span>
+                <DateTime isoStr={u.occurred_at} className={styles.timelineDate} />
                 <p className={styles.timelineNotes}>{u.notes}</p>
                 {u.new_status && (
                   <p className={styles.timelineMeta}>
