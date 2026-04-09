@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   title: pageTitle,
 }
 
-export default function VacanciesPage() {
+export default async function VacanciesPage() {
   const queryClient = getQueryClient()
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: queryKeys.vacancies.list(),
     queryFn: getVacancies,
   })

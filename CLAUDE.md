@@ -44,25 +44,31 @@ TanStack Query (`@tanstack/react-query`) is set up for client-side caching and q
 | `app/api/vacancies/[id]/route.ts` | GET `/api/vacancies/:id` |
 | `app/api/dashboard/route.ts` | GET `/api/dashboard` |
 
-### Prefetching — do not use `await`
+### Prefetching — always use `await`
 
-Each route has a `loading.tsx` skeleton. Using `await queryClient.prefetchQuery(...)` blocks the server component render and triggers that skeleton on every navigation, even when the client already has cached data.
-
-Always call `prefetchQuery` without `await`:
+Always `await queryClient.prefetchQuery(...)`. This ensures the server fetches data directly via Supabase before responding — fast because it is an in-region server-to-database call with no HTTP overhead.
 
 ```ts
 // correct
-queryClient.prefetchQuery({ queryKey: ..., queryFn: ... })
-
-// wrong — triggers loading.tsx skeleton on every navigation
 await queryClient.prefetchQuery({ queryKey: ..., queryFn: ... })
+
+// wrong — server sends no data; client must fetch over the network in production
+queryClient.prefetchQuery({ queryKey: ..., queryFn: ... })
 ```
 
-The `shouldDehydrateQuery` option in `get-query-client.ts` is configured to include pending queries, so the in-flight fetch is streamed to the client correctly. On return visits within `staleTime`, the client cache already has data and renders immediately.
+Without `await`, skipping the prefetch looks fine locally (localhost latency is imperceptible) but causes a visible loading state in production because the client has to fetch from the API routes over the real network while `isPending` is true.
+
+### No `loading.tsx` files
+
+There are no `loading.tsx` files in this project. They create Suspense boundaries that show a skeleton on every navigation — even return visits where the client cache already has data.
+
+Without `loading.tsx`, Next.js keeps the current page visible while the server processes the new one, then transitions instantly with data already populated. The server-side Supabase prefetch is fast enough that this is imperceptible.
+
+Do not add `loading.tsx` files to routes that use this data-fetching pattern.
 
 ### Adding a new query
 
 1. Add keys to `lib/queries/keys.ts` under the relevant domain.
 2. Add an API route handler in `app/api/` that checks auth and calls the `lib/data/` function.
 3. Add a `useQuery` hook in `lib/queries/<domain>.ts` that fetches the API route, passing `signal`.
-4. In the page server component, call `queryClient.prefetchQuery` (no `await`) with the matching key and `lib/data/` function, then wrap the consumer in `<HydrationBoundary>`.
+4. In the page server component (must be `async`), call `await queryClient.prefetchQuery` with the matching key and `lib/data/` function, then wrap the consumer in `<HydrationBoundary>`.

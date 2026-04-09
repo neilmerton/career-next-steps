@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   title: pageTitle,
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
   const queryClient = getQueryClient()
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: queryKeys.dashboard.data(),
     queryFn: getDashboardData,
   })

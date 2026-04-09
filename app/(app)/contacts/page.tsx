@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   title: pageTitle,
 }
 
-export default function ContactsPage() {
+export default async function ContactsPage() {
   const queryClient = getQueryClient()
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: queryKeys.contacts.list(),
     queryFn: getContacts,
   })
