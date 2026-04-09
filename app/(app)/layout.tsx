@@ -13,10 +13,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <div className={styles.navLinks}>
           <NavLinks />
         </div>
-        <button className={styles.logoutButton} onClick={signOut}>
-          <Icon icon={Logout01Icon} />
-          <span>Log out</span>
-        </button>
+        <form action={signOut}>
+          <button type="submit" className={styles.logoutButton}>
+            <Icon icon={Logout01Icon} />
+            <span>Log out</span>
+          </button>
+        </form>
       </nav>
       <main className={styles.main}>{children}</main>
     </div>

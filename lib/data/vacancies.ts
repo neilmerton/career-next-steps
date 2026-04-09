@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import type { Contact, JobVacancy, Update } from '@/types/database'
 
@@ -11,22 +12,11 @@ export async function getVacancies(): Promise<JobVacancy[]> {
   return data ?? []
 }
 
-export async function getVacancyTitle(id: string): Promise<string | null> {
-  const supabase = await createClient()
-  const { data } = await supabase
-    .from('job_vacancies')
-    .select('title')
-    .eq('id', id)
-    .single()
-
-  return data?.title ?? null
-}
-
-export async function getVacancy(id: string): Promise<{
+export const getVacancy = cache(async (id: string): Promise<{
   vacancy: JobVacancy
   updates: Update[]
   contacts: Pick<Contact, 'id' | 'name'>[]
-} | null> {
+} | null> => {
   const supabase = await createClient()
 
   const [{ data: vacancy }, { data: updates }, { data: contacts }] = await Promise.all([
@@ -42,7 +32,7 @@ export async function getVacancy(id: string): Promise<{
   if (!vacancy) return null
 
   return { vacancy, updates: updates ?? [], contacts: contacts ?? [] }
-}
+})
 
 export async function getContactsForSelect(): Promise<Pick<Contact, 'id' | 'name'>[]> {
   const supabase = await createClient()

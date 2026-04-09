@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getVacancy, getVacancyTitle } from '@/lib/data/vacancies'
+import { getVacancy } from '@/lib/data/vacancies'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
 import DateTime from '@/components/DateTime'
@@ -14,8 +14,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  const title = await getVacancyTitle(id)
-  return { title: title ?? 'Vacancy' }
+  const result = await getVacancy(id)
+  return { title: result?.vacancy.title ?? 'Vacancy' }
 }
 
 export default async function VacancyDetailPage({ params, searchParams }: Props) {

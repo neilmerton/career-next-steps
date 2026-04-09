@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import type { Contact, Update } from '@/types/database'
 
@@ -11,18 +12,7 @@ export async function getContacts(): Promise<Contact[]> {
   return data ?? []
 }
 
-export async function getContactName(id: string): Promise<string | null> {
-  const supabase = await createClient()
-  const { data } = await supabase
-    .from('contacts')
-    .select('name')
-    .eq('id', id)
-    .single()
-
-  return data?.name ?? null
-}
-
-export async function getContact(id: string): Promise<{ contact: Contact; updates: Update[] } | null> {
+export const getContact = cache(async (id: string): Promise<{ contact: Contact; updates: Update[] } | null> => {
   const supabase = await createClient()
 
   const [{ data: contact }, { data: updates }] = await Promise.all([
@@ -37,4 +27,4 @@ export async function getContact(id: string): Promise<{ contact: Contact; update
   if (!contact) return null
 
   return { contact, updates: updates ?? [] }
-}
+})

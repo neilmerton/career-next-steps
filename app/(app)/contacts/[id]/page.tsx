@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getContact, getContactName } from '@/lib/data/contacts'
+import { getContact } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate } from '@/lib/utils/dates'
 import DateTime from '@/components/DateTime'
@@ -14,8 +14,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  const name = await getContactName(id)
-  return { title: name ?? 'Contact' }
+  const result = await getContact(id)
+  return { title: result?.contact.name ?? 'Contact' }
 }
 
 export default async function ContactDetailPage({ params, searchParams }: Props) {

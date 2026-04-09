@@ -11,8 +11,8 @@ interface Props {
 export default function DateTime({ isoStr, format = 'datetime', className }: Props) {
   const date = new Date(isoStr)
   const formatted = format === 'time'
-    ? date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
-    : date.toLocaleDateString('en-GB', {
+    ? date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+    : date.toLocaleDateString(undefined, {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
