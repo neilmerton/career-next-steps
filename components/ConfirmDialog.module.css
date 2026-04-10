@@ -1,0 +1,36 @@
+.dialog {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  margin: auto;
+  max-width: 400px;
+  padding: var(--space-6);
+  width: calc(100% - var(--space-8));
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.title {
+  color: var(--color-text-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.description {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  gap: var(--space-4);
+  justify-content: flex-end;
+}

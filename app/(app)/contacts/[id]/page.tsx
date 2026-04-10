@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getContact } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate } from '@/lib/utils/dates'
+import ConfirmDialog from '@/components/ConfirmDialog'
 import DateTime from '@/components/DateTime'
 import SubmitButton from '@/components/SubmitButton'
 import styles from './detail.module.css'
@@ -151,9 +152,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
         <p className={styles.dangerText}>
           This will permanently delete the contact and all associated updates.
         </p>
-        <form action={boundDeleteContact}>
-          <SubmitButton label="Delete contact" pendingLabel="Deleting…" className="btn-danger" />
-        </form>
+        <ConfirmDialog entity="contact" action={boundDeleteContact} />
       </section>
     </div>
   )

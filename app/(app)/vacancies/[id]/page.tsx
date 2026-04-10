@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { getVacancy } from '@/lib/data/vacancies'
-import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
-import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
+import ConfirmDialog from '@/components/ConfirmDialog'
 import DateTime from '@/components/DateTime'
 import SubmitButton from '@/components/SubmitButton'
+import { addVacancyUpdate, deleteVacancy, updateVacancy } from '@/lib/actions/vacancies'
+import { getVacancy } from '@/lib/data/vacancies'
+import { ALL_SOURCES, ALL_STATUSES, SOURCE_LABELS, STATUS_LABELS } from '@/lib/utils/vacancies'
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import styles from './detail.module.css'
 
 interface Props {
@@ -182,9 +183,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           This will permanently delete the vacancy and all associated updates.
           The linked contact will not be affected.
         </p>
-        <form action={boundDeleteVacancy}>
-          <SubmitButton label="Delete vacancy" pendingLabel="Deleting…" className="btn-danger" />
-        </form>
+        <ConfirmDialog entity="vacancy" action={boundDeleteVacancy} />
       </section>
     </div>
   )
