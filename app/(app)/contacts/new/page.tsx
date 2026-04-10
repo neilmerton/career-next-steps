@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { createContact } from '@/lib/actions/contacts'
+import SubmitButton from '@/components/SubmitButton'
 
 export const metadata: Metadata = {
   title: 'Add Contact',
@@ -51,7 +52,7 @@ export default async function NewContactPage({ searchParams }: Props) {
 
         <div className="form-actions-start">
           <Link href="/contacts" className="btn-cancel">Cancel</Link>
-          <button type="submit" className="btn-primary">Add contact</button>
+          <SubmitButton label="Add contact" pendingLabel="Saving…" className="btn-primary" />
         </div>
       </form>
     </div>

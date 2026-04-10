@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { signUp } from '@/lib/actions/auth'
+import SubmitButton from '@/components/SubmitButton'
 
 export const metadata: Metadata = {
   title: 'Create Account',
@@ -45,7 +46,7 @@ export default async function SignUpPage({ searchParams }: Props) {
             />
           </div>
 
-          <button type="submit" className={`btn-primary ${styles.submit}`}>Create account</button>
+          <SubmitButton label="Create account" pendingLabel="Creating account…" className={`btn-primary ${styles.submit}`} />
         </form>
       )}
 

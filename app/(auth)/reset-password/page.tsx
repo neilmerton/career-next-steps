@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { resetPassword } from '@/lib/actions/auth'
+import SubmitButton from '@/components/SubmitButton'
 
 export const metadata: Metadata = {
   title: 'Reset Password',
@@ -33,7 +34,7 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
             />
           </div>
 
-          <button type="submit" className={`btn-primary ${styles.submit}`}>Send reset link</button>
+          <SubmitButton label="Send reset link" pendingLabel="Sending…" className={`btn-primary ${styles.submit}`} />
         </form>
       )}
 

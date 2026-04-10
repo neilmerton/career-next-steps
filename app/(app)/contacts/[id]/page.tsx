@@ -5,6 +5,7 @@ import { getContact } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate } from '@/lib/utils/dates'
 import DateTime from '@/components/DateTime'
+import SubmitButton from '@/components/SubmitButton'
 import styles from './detail.module.css'
 
 interface Props {
@@ -67,7 +68,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-primary">Add update</button>
+            <SubmitButton label="Add update" pendingLabel="Saving…" className="btn-primary" />
           </div>
         </form>
       </section>
@@ -139,7 +140,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-primary">Save changes</button>
+            <SubmitButton label="Save changes" pendingLabel="Saving…" className="btn-primary" />
           </div>
         </form>
       </section>
@@ -151,7 +152,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
           This will permanently delete the contact and all associated updates.
         </p>
         <form action={boundDeleteContact}>
-          <button type="submit" className="btn-danger">Delete contact</button>
+          <SubmitButton label="Delete contact" pendingLabel="Deleting…" className="btn-danger" />
         </form>
       </section>
     </div>

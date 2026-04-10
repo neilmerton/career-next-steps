@@ -5,6 +5,7 @@ import { getVacancy } from '@/lib/data/vacancies'
 import { updateVacancy, deleteVacancy, addVacancyUpdate } from '@/lib/actions/vacancies'
 import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
 import DateTime from '@/components/DateTime'
+import SubmitButton from '@/components/SubmitButton'
 import styles from './detail.module.css'
 
 interface Props {
@@ -67,7 +68,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-primary">Add update</button>
+            <SubmitButton label="Add update" pendingLabel="Saving…" className="btn-primary" />
           </div>
         </form>
       </section>
@@ -169,7 +170,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-primary">Save changes</button>
+            <SubmitButton label="Save changes" pendingLabel="Saving…" className="btn-primary" />
           </div>
         </form>
       </section>
@@ -182,7 +183,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
           The linked contact will not be affected.
         </p>
         <form action={boundDeleteVacancy}>
-          <button type="submit" className="btn-danger">Delete vacancy</button>
+          <SubmitButton label="Delete vacancy" pendingLabel="Deleting…" className="btn-danger" />
         </form>
       </section>
     </div>

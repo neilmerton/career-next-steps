@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { signIn } from '@/lib/actions/auth'
+import SubmitButton from '@/components/SubmitButton'
 
 export const metadata: Metadata = {
   title: 'Log In',
@@ -43,7 +44,7 @@ export default async function LoginPage({ searchParams }: Props) {
           />
         </div>
 
-        <button type="submit" className={`btn-primary ${styles.submit}`}>Log in</button>
+        <SubmitButton label="Log in" pendingLabel="Logging in…" className={`btn-primary ${styles.submit}`} />
       </form>
 
       <p className={styles.footer}>

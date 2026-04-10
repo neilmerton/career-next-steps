@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { updatePassword } from '@/lib/actions/auth'
+import SubmitButton from '@/components/SubmitButton'
 
 export const metadata: Metadata = {
   title: 'Set New Password',
@@ -44,7 +45,7 @@ export default async function ResetPasswordConfirmPage({ searchParams }: Props) 
           />
         </div>
 
-        <button type="submit" className={`btn-primary ${styles.submit}`}>Update password</button>
+        <SubmitButton label="Update password" pendingLabel="Updating…" className={`btn-primary ${styles.submit}`} />
       </form>
     </>
   )

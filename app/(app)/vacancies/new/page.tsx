@@ -1,13 +1,14 @@
-import type { Metadata } from 'next'
+import { createVacancy } from '@/lib/actions/vacancies'
 import { getContactsForSelect } from '@/lib/data/vacancies'
+import { ALL_SOURCES, ALL_STATUSES, SOURCE_LABELS, STATUS_LABELS } from '@/lib/utils/vacancies'
+import SubmitButton from '@/components/SubmitButton'
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import styles from './new.module.css'
 
 export const metadata: Metadata = {
   title: 'Add Vacancy',
 }
-import { createVacancy } from '@/lib/actions/vacancies'
-import { ALL_STATUSES, ALL_SOURCES, STATUS_LABELS, SOURCE_LABELS } from '@/lib/utils/vacancies'
-import styles from './new.module.css'
-import Link from 'next/link'
 
 interface Props {
   searchParams: Promise<{ error?: string }>
@@ -92,7 +93,7 @@ export default async function NewVacancyPage({ searchParams }: Props) {
 
         <div className="form-actions-start">
           <Link href="/vacancies" className="btn-cancel">Cancel</Link>
-          <button type="submit" className="btn-primary">Add vacancy</button>
+          <SubmitButton label="Add vacancy" pendingLabel="Saving…" className="btn-primary" />
         </div>
       </form>
     </div>
