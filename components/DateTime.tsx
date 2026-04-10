@@ -13,15 +13,16 @@ const subscribe = () => () => {}
 
 function formatDate(isoStr: string, format: 'datetime' | 'time'): string {
   const date = new Date(isoStr)
-  return format === 'time'
-    ? date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
-    : date.toLocaleDateString(undefined, {
+  const options: Intl.DateTimeFormatOptions = format === 'time'
+    ? { hour: 'numeric', minute: '2-digit' }
+    : {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
         hour: 'numeric',
         minute: '2-digit',
-      })
+      }
+  return date.toLocaleTimeString(undefined, options)
 }
 
 /** Renders an ISO datetime string formatted to the user's local timezone. */
