@@ -8,7 +8,7 @@ import styles from './NavLinks.module.css'
 
 const links = [
   { href: '/dashboard', label: 'Dashboard', icon: HomeIcon },
-  { href: '/vacancies', label: 'Job Vacancies', icon: PermanentJobIcon },
+  { href: '/vacancies', label: 'Vacancies', icon: PermanentJobIcon },
   { href: '/contacts', label: 'Contacts', icon: ContactBookIcon },
 ]
 

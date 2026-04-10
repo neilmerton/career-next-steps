@@ -34,7 +34,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
 
   return (
     <div className={styles.page}>
-      <Link href="/vacancies" className={styles.back}>← Job Vacancies</Link>
+      <Link href="/vacancies" className={styles.back}>← Vacancies</Link>
 
       {error && <p className="alert-error">{error}</p>}
       {message && <p className="alert-success">{message}</p>}

@@ -30,10 +30,11 @@
   .link,
   .active {
     border-bottom: none;
+    flex-direction: column;
     padding: 0;
 
     >span {
-      display: none;
+      font-size: var(--text-xs);
     }
 
     >svg {

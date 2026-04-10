@@ -21,7 +21,7 @@ export default async function NewVacancyPage({ searchParams }: Props) {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <Link href="/vacancies" className={styles.back}>← Job Vacancies</Link>
+        <Link href="/vacancies" className={styles.back}>← Vacancies</Link>
         <h1 className={styles.title}>Add vacancy</h1>
       </div>
 

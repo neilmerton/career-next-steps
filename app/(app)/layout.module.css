@@ -93,10 +93,11 @@
   }
 
   .logoutButton {
+    flex-direction: column;
     font-size: var(--text-base);
 
     >span {
-      display: none;
+      font-size: var(--text-xs);
     }
 
     >svg {

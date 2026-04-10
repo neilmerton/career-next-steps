@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import styles from './vacancies.module.css'
 
-const pageTitle = 'Job Vacancies'
+const pageTitle = 'Vacancies'
 
 export const metadata: Metadata = {
   title: pageTitle,
