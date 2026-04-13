@@ -19,6 +19,7 @@ export default function VacancyCard({ vacancy }: Props) {
       </div>
       <div className={styles.meta}>
         {vacancy.company && <span>{vacancy.company}</span>}
+        {vacancy.company && vacancy.date_applied && <span>&bull;</span>}
         {vacancy.date_applied && <span>Applied {formatDate(vacancy.date_applied)}</span>}
       </div>
     </Link>
