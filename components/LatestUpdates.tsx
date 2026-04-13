@@ -52,7 +52,7 @@ export default function LatestUpdates() {
                   <div className={styles.header}>
                     <Link href={href} className={styles.subject}>
                       {subject}
-                      {sub && <span className={styles.sub}> — {sub}</span>}
+                      {sub && <span className={styles.sub}> &bull; {sub}</span>}
                     </Link>
                     <DateTime isoStr={u.occurred_at} format="time" className={styles.date} />
                   </div>
