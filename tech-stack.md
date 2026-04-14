@@ -26,6 +26,14 @@
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
+## Testing
+
+- **Vitest** — test runner; ESM-native, TypeScript-native, Jest-compatible API
+- **`happy-dom`** — lightweight DOM environment for tests that need browser APIs
+- Test files are co-located with source files (`*.test.ts` / `*.test.tsx`)
+- Pure utility functions use the `node` environment (no DOM overhead)
+- Run with `npm test` (watch) or `npm run test:run` (single pass / CI)
+
 ## Deployment
 
 - **Vercel** — recommended deployment target; native Next.js support, free tier is sufficient for personal use

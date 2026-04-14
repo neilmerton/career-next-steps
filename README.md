@@ -95,6 +95,24 @@ npm run dev
 
 The app runs on [http://localhost:3322](http://localhost:3322).
 
+## Testing
+
+Tests are written with [Vitest](https://vitest.dev) and co-located with the source files they cover (`*.test.ts`).
+
+### Running tests
+
+| Command | Description |
+|---|---|
+| `npm test` | Watch mode — re-runs on file changes |
+| `npm run test:run` | Single run — use in CI |
+
+### Coverage
+
+| Area | Files |
+|---|---|
+| Date utilities | `lib/utils/dates.test.ts` |
+| Vacancy utilities | `lib/utils/vacancies.test.ts` |
+
 ## Scripts
 
 | Command | Description |
@@ -103,6 +121,8 @@ The app runs on [http://localhost:3322](http://localhost:3322).
 | `npm run build` | Build for production |
 | `npm start` | Run production build |
 | `npm run lint` | Run ESLint |
+| `npm test` | Run tests in watch mode |
+| `npm run test:run` | Run tests once |
 
 ## Deployment
 
