@@ -5,8 +5,9 @@ import { getContact } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate } from '@/lib/utils/dates'
 import ConfirmDialog from '@/components/ConfirmDialog'
-import DateTime from '@/components/DateTime'
+import DangerZone from '@/components/DangerZone'
 import SubmitButton from '@/components/SubmitButton'
+import Timeline from '@/components/Timeline'
 import styles from './detail.module.css'
 
 interface Props {
@@ -35,8 +36,8 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
 
 
   return (
-    <div className={styles.page}>
-      <Link href="/contacts" className={styles.back}>← Contacts</Link>
+    <div className="page-container">
+      <Link href="/contacts" className={`back-link ${styles.back}`}>← Contacts</Link>
 
       {error && <p className="alert-error">{error}</p>}
       {message && <p className="alert-success">{message}</p>}
@@ -44,7 +45,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
       {/* ── Add update ──────────────────────────────────── */}
       <section className={styles.section}>
         <h1 className={styles.title}>{contact.name}</h1>
-        <h2 className={styles.sectionTitle}>Add update</h2>
+        <h2 className="section-title">Add update</h2>
         <form action={boundAddUpdate} className="form-stack">
           <div className="form-field">
             <label htmlFor="notes" className="form-label">Notes <span className="form-required">*</span></label>
@@ -77,26 +78,21 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
       {/* ── Update history ──────────────────────────────── */}
       {updates && updates.length > 0 && (
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>History</h2>
-          <ol className={styles.timeline}>
-            {updates.map((u) => (
-              <li key={u.id} className={styles.timelineItem}>
-                <DateTime isoStr={u.occurred_at} className={styles.timelineDate} />
-                <p className={styles.timelineNotes}>{u.notes}</p>
-                {u.new_next_contact_date && (
-                  <p className={styles.timelineMeta}>
-                    Next contact date set to {formatDate(u.new_next_contact_date)}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
+          <h2 className="section-title">History</h2>
+          <Timeline items={updates.map((u) => ({
+            id: u.id,
+            occurred_at: u.occurred_at,
+            notes: u.notes,
+            meta: u.new_next_contact_date
+              ? `Next contact date set to ${formatDate(u.new_next_contact_date)}`
+              : undefined,
+          }))} />
         </section>
       )}
 
       {/* ── Edit contact ────────────────────────────────── */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Edit contact</h2>
+        <h2 className="section-title">Edit contact</h2>
         <form action={boundUpdateContact} className="form-stack">
           <div className="form-row">
             <div className="form-field">
@@ -147,13 +143,12 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
       </section>
 
       {/* ── Delete ──────────────────────────────────────── */}
-      <section className={styles.dangerZone}>
-        <h2 className={styles.dangerTitle}>Delete contact</h2>
-        <p className={styles.dangerText}>
-          This will permanently delete the contact and all associated updates.
-        </p>
+      <DangerZone
+        title="Delete contact"
+        description="This will permanently delete the contact and all associated updates."
+      >
         <ConfirmDialog entity="contact" action={boundDeleteContact} />
-      </section>
+      </DangerZone>
     </div>
   )
 }

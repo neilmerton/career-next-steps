@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
 import { createContact } from '@/lib/actions/contacts'
 import SubmitButton from '@/components/SubmitButton'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Add Contact',
 }
-import styles from './new.module.css'
-import Link from 'next/link'
 
 interface Props {
   searchParams: Promise<{ error?: string }>
@@ -16,10 +15,10 @@ export default async function NewContactPage({ searchParams }: Props) {
   const { error } = await searchParams
 
   return (
-    <div className={styles.page}>
-      <div className={styles.header}>
-        <Link href="/contacts" className={styles.back}>← Contacts</Link>
-        <h1 className={styles.title}>Add contact</h1>
+    <div className="page-container">
+      <div style={{ marginBottom: 'var(--space-6)' }}>
+        <Link href="/contacts" className="back-link" style={{ marginBottom: 'var(--space-2)', display: 'block' }}>← Contacts</Link>
+        <h1 className="page-title">Add contact</h1>
       </div>
 
       {error && <p className="alert-error">{error}</p>}
