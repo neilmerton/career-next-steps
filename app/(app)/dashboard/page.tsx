@@ -22,22 +22,22 @@ export default async function DashboardPage() {
   })
 
   return (
-    <div className={styles.page}>
+    <div className="page-container">
       <h1 className={styles.title}>{pageTitle}</h1>
 
       <HydrationBoundary state={dehydrate(queryClient)}>
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Vacancies by status</h2>
+          <h2 className="section-title">Vacancies by status</h2>
           <StatusSummary />
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Contacts due soon</h2>
+          <h2 className="section-title">Contacts due soon</h2>
           <UpcomingContacts />
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Recent activity</h2>
+          <h2 className="section-title">Recent activity</h2>
           <LatestUpdates />
         </section>
       </HydrationBoundary>

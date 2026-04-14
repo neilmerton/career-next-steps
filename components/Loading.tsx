@@ -15,10 +15,10 @@ interface LoadingProps {
 
 export default function Loading({ title, children }: LoadingProps) {
   return (
-    <div className={styles.page}>
+    <div className="page-container">
       <header className={styles.pageHeader}>
         {title
-          ? <h1 className={styles.title}>{title}</h1>
+          ? <h1 className="page-title">{title}</h1>
           : <Skeleton style={{ width: '10rem', height: '2rem', marginBottom: '1.5rem' }} />
         }
       </header>

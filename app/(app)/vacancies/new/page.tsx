@@ -20,10 +20,10 @@ export default async function NewVacancyPage({ searchParams }: Props) {
   const contacts = await getContactsForSelect()
 
   return (
-    <div className={styles.page}>
+    <div className="page-container">
       <div className={styles.header}>
-        <Link href="/vacancies" className={styles.back}>← Vacancies</Link>
-        <h1 className={styles.title}>Add vacancy</h1>
+        <Link href="/vacancies" className={`back-link ${styles.back}`}>← Vacancies</Link>
+        <h1 className="page-title">Add vacancy</h1>
       </div>
 
       {error && <p className="alert-error">{error}</p>}
@@ -74,7 +74,7 @@ export default async function NewVacancyPage({ searchParams }: Props) {
         <div className="form-field">
           <label htmlFor="contact_id" className={`form-label ${styles.labelWithAction}`}>
             Contact
-            <Link href="/contacts/new" className={styles.createLink} target="_blank" rel="noreferrer">
+            <Link href="/contacts/new" className="text-link" target="_blank" rel="noreferrer">
               + Create new
             </Link>
           </label>

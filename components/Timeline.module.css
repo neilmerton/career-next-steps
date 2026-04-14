@@ -1,0 +1,36 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3-5) var(--space-4);
+}
+
+.date {
+  color: var(--color-text-muted);
+  display: block;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+
+.notes {
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.meta {
+  color: var(--color-text-link);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  margin: var(--space-2) 0 0;
+}

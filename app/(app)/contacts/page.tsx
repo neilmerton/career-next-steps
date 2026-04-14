@@ -5,7 +5,6 @@ import { queryKeys } from '@/lib/queries/keys'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import styles from './contacts.module.css'
 
 const pageTitle = 'Contacts'
 
@@ -21,10 +20,10 @@ export default async function ContactsPage() {
   })
 
   return (
-    <div className={styles.page}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{pageTitle}</h1>
-        <Link href="/contacts/new" className={styles.addButton}>Add contact</Link>
+    <div className="page-container">
+      <div className="page-header">
+        <h1 className="page-title">{pageTitle}</h1>
+        <Link href="/contacts/new" className="btn-primary-link">Add contact</Link>
       </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <ContactList />

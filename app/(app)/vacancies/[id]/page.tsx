@@ -1,6 +1,7 @@
 import ConfirmDialog from '@/components/ConfirmDialog'
-import DateTime from '@/components/DateTime'
+import DangerZone from '@/components/DangerZone'
 import SubmitButton from '@/components/SubmitButton'
+import Timeline from '@/components/Timeline'
 import { addVacancyUpdate, deleteVacancy, updateVacancy } from '@/lib/actions/vacancies'
 import { getVacancy } from '@/lib/data/vacancies'
 import { ALL_SOURCES, ALL_STATUSES, SOURCE_LABELS, STATUS_LABELS } from '@/lib/utils/vacancies'
@@ -35,8 +36,8 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
 
 
   return (
-    <div className={styles.page}>
-      <Link href="/vacancies" className={styles.back}>← Vacancies</Link>
+    <div className="page-container">
+      <Link href="/vacancies" className={`back-link ${styles.back}`}>← Vacancies</Link>
 
       {error && <p className="alert-error">{error}</p>}
       {message && <p className="alert-success">{message}</p>}
@@ -45,7 +46,7 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
       <section className={styles.section}>
         <h1 className={styles.title}>{vacancy.title}</h1>
         {vacancy.description && <p className={styles.description}>{vacancy.description}</p>}
-        <h2 className={styles.sectionTitle}>Add update</h2>
+        <h2 className="section-title">Add update</h2>
         <form action={boundAddUpdate} className="form-stack">
           <div className="form-field">
             <label htmlFor="notes" className="form-label">Notes <span className="form-required">*</span></label>
@@ -77,26 +78,19 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
       {/* ── Update history ───────────────────────────────── */}
       {updates && updates.length > 0 && (
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>History</h2>
-          <ol className={styles.timeline}>
-            {updates.map((u) => (
-              <li key={u.id} className={styles.timelineItem}>
-                <DateTime isoStr={u.occurred_at} className={styles.timelineDate} />
-                <p className={styles.timelineNotes}>{u.notes}</p>
-                {u.new_status && (
-                  <p className={styles.timelineMeta}>
-                    Status changed to {STATUS_LABELS[u.new_status]}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
+          <h2 className="section-title">History</h2>
+          <Timeline items={updates.map((u) => ({
+            id: u.id,
+            occurred_at: u.occurred_at,
+            notes: u.notes,
+            meta: u.new_status ? `Status changed to ${STATUS_LABELS[u.new_status]}` : undefined,
+          }))} />
         </section>
       )}
 
       {/* ── Edit vacancy ─────────────────────────────────── */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Edit job vacancy</h2>
+        <h2 className="section-title">Edit job vacancy</h2>
         <form action={boundUpdateVacancy} className="form-stack">
           <div className="form-row">
             <div className="form-field">
@@ -177,14 +171,12 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
       </section>
 
       {/* ── Delete ──────────────────────────────────────── */}
-      <section className={styles.dangerZone}>
-        <h2 className={styles.dangerTitle}>Delete vacancy</h2>
-        <p className={styles.dangerText}>
-          This will permanently delete the vacancy and all associated updates.
-          The linked contact will not be affected.
-        </p>
+      <DangerZone
+        title="Delete vacancy"
+        description="This will permanently delete the vacancy and all associated updates. The linked contact will not be affected."
+      >
         <ConfirmDialog entity="vacancy" action={boundDeleteVacancy} />
-      </section>
+      </DangerZone>
     </div>
   )
 }

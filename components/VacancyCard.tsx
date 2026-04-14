@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { JobVacancy } from '@/types/database'
-import { STATUS_LABELS } from '@/lib/utils/vacancies'
 import { formatDate } from '@/lib/utils/dates'
+import StatusBadge from './StatusBadge'
 import styles from './VacancyCard.module.css'
 
 interface Props {
@@ -13,9 +13,7 @@ export default function VacancyCard({ vacancy }: Props) {
     <Link href={`/vacancies/${vacancy.id}`} className={styles.card}>
       <div className={styles.header}>
         <span className={styles.title}>{vacancy.title}</span>
-        <span className={`${styles.badge} ${styles[vacancy.status]}`}>
-          {STATUS_LABELS[vacancy.status]}
-        </span>
+        <StatusBadge status={vacancy.status} />
       </div>
       <div className={styles.meta}>
         {vacancy.company && <span>{vacancy.company}</span>}
