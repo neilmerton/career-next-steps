@@ -51,8 +51,8 @@ export default function LatestUpdates() {
                 <li key={u.id} className={styles.item}>
                   <div className={styles.header}>
                     <Link href={href} className={styles.subject}>
-                      {subject}
-                      {sub && <span className={styles.sub}> &bull; {sub}</span>}
+                      <span>{subject}</span>
+                      {sub && <><span>&bull;</span><span>{sub}</span></>}
                     </Link>
                     <DateTime isoStr={u.occurred_at} format="time" className={styles.date} />
                   </div>

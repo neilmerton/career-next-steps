@@ -47,22 +47,25 @@
 }
 
 .subject {
+  align-items: center;
+  color: var(--color-text-primary);
+  display: inline-flex;
   font-size: var(--text-base);
   font-weight: var(--weight-medium);
-  color: var(--color-text-primary);
-  text-decoration: none;
-  white-space: nowrap;
+  gap: var(--space-2);
   overflow: hidden;
+  text-decoration: none;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
+  & span:not(:first-of-type) {
+    color: var(--color-text-muted);
+    font-weight: var(--weight-normal);
+  }
 }
 
 .subject:hover {
   color: var(--color-text-link);
-}
-
-.sub {
-  font-weight: var(--weight-normal);
-  color: var(--color-text-muted);
 }
 
 .date {

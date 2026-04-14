@@ -6,7 +6,9 @@
     "dev": "PORT=3322 next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.1.1",
@@ -20,11 +22,14 @@
     "zod": "latest"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
-    "typescript": "^5"
+    "happy-dom": "^20.9.0",
+    "typescript": "^5",
+    "vitest": "^4.1.4"
   }
 }
