@@ -9,3 +9,14 @@
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-8);
 }
+
+.sectionHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 var(--space-6);
+
+  >h2 {
+    margin: 0;
+  }
+}

@@ -6,6 +6,7 @@ import { getQueryClient } from '@/lib/queries/get-query-client'
 import { queryKeys } from '@/lib/queries/keys'
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import styles from './dashboard.module.css'
 
 const pageTitle = 'Dashboard'
@@ -27,12 +28,18 @@ export default async function DashboardPage() {
 
       <HydrationBoundary state={dehydrate(queryClient)}>
         <section className={styles.section}>
-          <h2 className="section-title">Vacancies by status</h2>
+          <header className={styles.sectionHeader}>
+            <h2 className="section-title">Vacancies by status</h2>
+            <Link href="/vacancies/new" className="btn-primary-link">Add vacancy</Link>
+          </header>
           <StatusSummary />
         </section>
 
         <section className={styles.section}>
-          <h2 className="section-title">Contacts due soon</h2>
+          <header className={styles.sectionHeader}>
+            <h2 className="section-title">Contacts due soon</h2>
+            <Link href="/contacts/new" className="btn-primary-link">Add contact</Link>
+          </header>
           <UpcomingContacts />
         </section>
 
