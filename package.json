@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "open http://localhost:3322",
     "dev": "PORT=3322 next dev",
     "build": "next build",
     "start": "next start",
