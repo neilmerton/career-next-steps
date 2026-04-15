@@ -12,7 +12,10 @@ const contactSchema = z.object({
   company: z.string(),
   email: z.email('Enter a valid email address').or(z.literal('')),
   phone: z.string(),
-  next_contact_date: z.string(), // YYYY-MM-DD or empty string
+  next_contact_date: z.string().refine(
+    (val) => !val || val >= new Date().toISOString().split('T')[0],
+    { message: 'Next contact date cannot be in the past' },
+  ),
 })
 
 const updateNoteSchema = z.object({
@@ -32,7 +35,12 @@ async function getAuthenticatedClient() {
 
 // ── Create contact ────────────────────────────────────────────────────────────
 
-export async function createContact(formData: FormData) {
+export type CreateContactState = { error: string } | null
+
+export async function createContact(
+  _prev: CreateContactState,
+  formData: FormData,
+): Promise<CreateContactState> {
   const parsed = contactSchema.safeParse({
     name: formData.get('name'),
     company: formData.get('company') ?? '',
@@ -42,8 +50,7 @@ export async function createContact(formData: FormData) {
   })
 
   if (!parsed.success) {
-    const message = parsed.error.issues[0].message
-    redirect(`/contacts/new?error=${encodeURIComponent(message)}`)
+    return { error: parsed.error.issues[0].message }
   }
 
   const { supabase, userId } = await getAuthenticatedClient()
@@ -62,7 +69,7 @@ export async function createContact(formData: FormData) {
     .single()
 
   if (error) {
-    redirect(`/contacts/new?error=${encodeURIComponent(error.message)}`)
+    return { error: error.message }
   }
 
   redirect(`/contacts/${data.id}`)
