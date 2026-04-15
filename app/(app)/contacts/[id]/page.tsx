@@ -56,15 +56,15 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
 
           <div className="form-row">
             <div className="form-field">
-              <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
-              <input
-                id="occurred_at" name="occurred_at" type="datetime-local" placeholder=" "
-              />
-            </div>
-            <div className="form-field">
               <label htmlFor="new_next_contact_date" className="form-label">New next contact date <span className="form-hint">(optional)</span></label>
               <input
                 id="new_next_contact_date" name="new_next_contact_date" type="date"
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
+              <input
+                id="occurred_at" name="occurred_at" type="datetime-local" placeholder=" "
               />
             </div>
           </div>
