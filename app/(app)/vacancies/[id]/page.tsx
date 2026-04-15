@@ -45,7 +45,13 @@ export default async function VacancyDetailPage({ params, searchParams }: Props)
       {/* ── Add update / change status ───────────────────── */}
       <section className={styles.section}>
         <h1 className={styles.title}>{vacancy.title}</h1>
-        {vacancy.description && <p className={styles.description}>{vacancy.description}</p>}
+        {vacancy.description && (
+          <p className={styles.description}>
+            {vacancy.description.startsWith('https://')
+              ? <a href={vacancy.description} target="_blank" rel="noreferrer">{vacancy.description}</a>
+              : vacancy.description}
+          </p>
+        )}
         <h2 className="section-title">Add update</h2>
         <form action={boundAddUpdate} className="form-stack">
           <div className="form-field">
