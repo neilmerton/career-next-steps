@@ -20,7 +20,10 @@ const vacancySchema = z.object({
   title: z.string().min(1, 'Title is required'),
   company: z.string(),
   description: z.string(),
-  date_applied: z.string(),
+  date_applied: z.string().refine(
+    (val) => !val || val <= new Date().toISOString().split('T')[0],
+    { message: 'Date applied cannot be in the future' },
+  ),
   status: z.enum(VACANCY_STATUSES as [VacancyStatus, ...VacancyStatus[]]),
   source: z.enum(VACANCY_SOURCES as [VacancySource, ...VacancySource[]]).or(z.literal('')),
   source_other: z.string(),
@@ -44,7 +47,12 @@ async function getAuthenticatedClient() {
 
 // ── Create vacancy ────────────────────────────────────────────────────────────
 
-export async function createVacancy(formData: FormData) {
+export type CreateVacancyState = { error: string } | null
+
+export async function createVacancy(
+  _prev: CreateVacancyState,
+  formData: FormData,
+): Promise<CreateVacancyState> {
   const parsed = vacancySchema.safeParse({
     title: formData.get('title'),
     company: formData.get('company') ?? '',
@@ -57,8 +65,7 @@ export async function createVacancy(formData: FormData) {
   })
 
   if (!parsed.success) {
-    const message = parsed.error.issues[0].message
-    redirect(`/vacancies/new?error=${encodeURIComponent(message)}`)
+    return { error: parsed.error.issues[0].message }
   }
 
   const { supabase, userId } = await getAuthenticatedClient()
@@ -70,7 +77,7 @@ export async function createVacancy(formData: FormData) {
       title: parsed.data.title,
       company: parsed.data.company || null,
       description: parsed.data.description || null,
-      date_applied: parsed.data.date_applied || null,
+      date_applied: parsed.data.date_applied || new Date().toISOString().split('T')[0],
       status: parsed.data.status,
       source: parsed.data.source || null,
       source_other: parsed.data.source_other || null,
@@ -80,7 +87,7 @@ export async function createVacancy(formData: FormData) {
     .single()
 
   if (error) {
-    redirect(`/vacancies/new?error=${encodeURIComponent(error.message)}`)
+    return { error: error.message }
   }
 
   redirect(`/vacancies/${data.id}`)
