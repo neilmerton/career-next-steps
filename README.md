@@ -113,10 +113,15 @@ Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](
 |---|---|
 | Date utilities | `lib/utils/dates.test.ts` |
 | Vacancy utilities | `lib/utils/vacancies.test.ts` |
-| StatusBadge component | `components/StatusBadge.test.tsx` |
-| DateTime component | `components/DateTime.test.tsx` |
-| SubmitButton component | `components/SubmitButton.test.tsx` |
 | ConfirmDialog component | `components/ConfirmDialog.test.tsx` |
+| ContactCard component | `components/ContactCard.test.tsx` |
+| DangerZone component | `components/DangerZone.test.tsx` |
+| DateTime component | `components/DateTime.test.tsx` |
+| Loading component | `components/Loading.test.tsx` |
+| StatusBadge component | `components/StatusBadge.test.tsx` |
+| SubmitButton component | `components/SubmitButton.test.tsx` |
+| Timeline component | `components/Timeline.test.tsx` |
+| VacancyCard component | `components/VacancyCard.test.tsx` |
 
 ## Scripts
 
