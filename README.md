@@ -20,6 +20,7 @@ I'm using this to track my job applications, and also to improve my working expe
 | Auth | Supabase Auth (email/password) |
 | Styling | CSS Modules with custom design tokens |
 | Validation | Zod |
+| Testing | Vitest + React Testing Library |
 
 ## Project Structure
 
@@ -97,7 +98,7 @@ The app runs on [http://localhost:3322](http://localhost:3322).
 
 ## Testing
 
-Tests are written with [Vitest](https://vitest.dev) and co-located with the source files they cover (`*.test.ts`).
+Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), co-located with the source files they cover (`*.test.ts` / `*.test.tsx`).
 
 ### Running tests
 
@@ -112,6 +113,10 @@ Tests are written with [Vitest](https://vitest.dev) and co-located with the sour
 |---|---|
 | Date utilities | `lib/utils/dates.test.ts` |
 | Vacancy utilities | `lib/utils/vacancies.test.ts` |
+| StatusBadge component | `components/StatusBadge.test.tsx` |
+| DateTime component | `components/DateTime.test.tsx` |
+| SubmitButton component | `components/SubmitButton.test.tsx` |
+| ConfirmDialog component | `components/ConfirmDialog.test.tsx` |
 
 ## Scripts
 

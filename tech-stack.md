@@ -29,9 +29,12 @@
 ## Testing
 
 - **Vitest** — test runner; ESM-native, TypeScript-native, Jest-compatible API
-- **`happy-dom`** — lightweight DOM environment for tests that need browser APIs
+- **React Testing Library** (`@testing-library/react`) — renders components and queries the DOM the way a user would
+- **`@testing-library/user-event`** — simulates realistic user interactions (preferred over `fireEvent`)
+- **`@testing-library/jest-dom`** — custom matchers (`toBeInTheDocument`, `toBeDisabled`, `toHaveClass`, etc.)
+- **`happy-dom`** — lightweight DOM environment; used globally across all tests
+- **`@vitejs/plugin-react`** — Vite/Vitest plugin for JSX/TSX transformation
 - Test files are co-located with source files (`*.test.ts` / `*.test.tsx`)
-- Pure utility functions use the `node` environment (no DOM overhead)
 - Run with `npm test` (watch) or `npm run test:run` (single pass / CI)
 
 ## Deployment
