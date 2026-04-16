@@ -115,13 +115,18 @@ Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](
 | Vacancy utilities | `lib/utils/vacancies.test.ts` |
 | ConfirmDialog component | `components/ConfirmDialog.test.tsx` |
 | ContactCard component | `components/ContactCard.test.tsx` |
+| ContactList component | `components/ContactList.test.tsx` |
 | DangerZone component | `components/DangerZone.test.tsx` |
 | DateTime component | `components/DateTime.test.tsx` |
+| LatestUpdates component | `components/LatestUpdates.test.tsx` |
 | Loading component | `components/Loading.test.tsx` |
 | StatusBadge component | `components/StatusBadge.test.tsx` |
+| StatusSummary component | `components/StatusSummary.test.tsx` |
 | SubmitButton component | `components/SubmitButton.test.tsx` |
 | Timeline component | `components/Timeline.test.tsx` |
+| UpcomingContacts component | `components/UpcomingContacts.test.tsx` |
 | VacancyCard component | `components/VacancyCard.test.tsx` |
+| VacancyList component | `components/VacancyList.test.tsx` |
 
 ## Scripts
 
