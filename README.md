@@ -20,7 +20,8 @@ I'm using this to track my job applications, and also to improve my working expe
 | Auth | Supabase Auth (email/password) |
 | Styling | CSS Modules with custom design tokens |
 | Validation | Zod |
-| Testing | Vitest + React Testing Library |
+| Unit testing | Vitest + React Testing Library |
+| E2E testing | Playwright |
 
 ## Project Structure
 
@@ -98,16 +99,16 @@ The app runs on [http://localhost:3322](http://localhost:3322).
 
 ## Testing
 
-Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), co-located with the source files they cover (`*.test.ts` / `*.test.tsx`).
+### Unit tests
 
-### Running tests
+Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), co-located with the source files they cover (`*.test.ts` / `*.test.tsx`).
 
 | Command | Description |
 |---|---|
 | `npm test` | Watch mode — re-runs on file changes |
 | `npm run test:run` | Single run — use in CI |
 
-### Coverage
+#### Coverage
 
 | Area | Files |
 |---|---|
@@ -128,6 +129,33 @@ Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](
 | VacancyCard component | `components/VacancyCard.test.tsx` |
 | VacancyList component | `components/VacancyList.test.tsx` |
 
+### E2E tests
+
+End-to-end tests are written with [Playwright](https://playwright.dev) and live in the `e2e/` directory. They run against a locally running dev server and require a dedicated test Supabase account.
+
+#### Setup
+
+Add the following to `.env.local`:
+
+```bash
+NEXT_PUBLIC_E2E_EMAIL=your-test-account@example.com
+NEXT_PUBLIC_E2E_PASSWORD=your-test-password
+```
+
+| Command | Description |
+|---|---|
+| `npm run test:e2e` | Run all E2E tests (headless) |
+| `npm run test:e2e:ui` | Open the Playwright UI for interactive debugging |
+
+#### Coverage
+
+| File | Flows |
+|---|---|
+| `e2e/auth.spec.ts` | Unauthenticated redirect, wrong password error, successful login |
+| `e2e/vacancies.spec.ts` | Create, list grouping by status, add note update, add status-change update, edit, delete |
+| `e2e/contacts.spec.ts` | Create, add note, edit, set next contact date, delete |
+| `e2e/dashboard.spec.ts` | Root redirect, status summary counts, status card navigation, recent activity |
+
 ## Scripts
 
 | Command | Description |
@@ -136,8 +164,10 @@ Tests are written with [Vitest](https://vitest.dev) and [React Testing Library](
 | `npm run build` | Build for production |
 | `npm start` | Run production build |
 | `npm run lint` | Run ESLint |
-| `npm test` | Run tests in watch mode |
-| `npm run test:run` | Run tests once |
+| `npm test` | Run unit tests in watch mode |
+| `npm run test:run` | Run unit tests once |
+| `npm run test:e2e` | Run E2E tests (headless) |
+| `npm run test:e2e:ui` | Open Playwright UI |
 
 ## Deployment
 

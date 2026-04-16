@@ -28,6 +28,8 @@
 
 ## Testing
 
+### Unit tests
+
 - **Vitest** — test runner; ESM-native, TypeScript-native, Jest-compatible API
 - **React Testing Library** (`@testing-library/react`) — renders components and queries the DOM the way a user would
 - **`@testing-library/user-event`** — simulates realistic user interactions (preferred over `fireEvent`)
@@ -36,6 +38,14 @@
 - **`@vitejs/plugin-react`** — Vite/Vitest plugin for JSX/TSX transformation
 - Test files are co-located with source files (`*.test.ts` / `*.test.tsx`)
 - Run with `npm test` (watch) or `npm run test:run` (single pass / CI)
+
+### E2E tests
+
+- **Playwright** — browser automation for full user journey testing against a running dev server
+- **`dotenv`** — loads `.env.local` in `playwright.config.ts` to supply test account credentials
+- Auth is handled once via a setup project (`e2e/auth.setup.ts`) that saves session state to `playwright/.auth/user.json`; all other tests reuse it
+- Tests live in `e2e/` and cover auth flows, vacancy and contact lifecycle, and dashboard integration
+- Run with `npm run test:e2e` (headless) or `npm run test:e2e:ui` (interactive)
 
 ## Deployment
 
