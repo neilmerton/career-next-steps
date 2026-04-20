@@ -9,6 +9,20 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import styles from './dashboard.module.css'
 
+/**
+ * Server component
+ *  └─ prefetchQuery → hits Supabase directly → populates QueryClient cache
+ *  └─ dehydrate(queryClient) → serializes cache to JSON
+ *  └─ <HydrationBoundary state={...}> → embeds JSON in HTML
+ *
+ * Browser
+ *  └─ HydrationBoundary rehydrates → injects data into client QueryClient
+ *  └─ useQuery() → finds data already in cache → renders immediately
+ *
+ * This is why there are no loading.tsx files in this project; data arrives with the page,
+ * not after it.
+ */
+
 const pageTitle = 'Dashboard'
 
 export const metadata: Metadata = {
