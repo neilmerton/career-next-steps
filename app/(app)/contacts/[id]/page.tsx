@@ -5,6 +5,7 @@ import { getContact } from '@/lib/data/contacts'
 import { updateContact, deleteContact, addContactUpdate } from '@/lib/actions/contacts'
 import { formatDate } from '@/lib/utils/dates'
 import ConfirmDialog from '@/components/ConfirmDialog'
+import DateTimeLocalInput from '@/components/DateTimeLocalInput'
 import DangerZone from '@/components/DangerZone'
 import SubmitButton from '@/components/SubmitButton'
 import Timeline from '@/components/Timeline'
@@ -63,9 +64,7 @@ export default async function ContactDetailPage({ params, searchParams }: Props)
             </div>
             <div className="form-field">
               <label htmlFor="occurred_at" className="form-label">Date &amp; time <span className="form-hint">(leave blank for now)</span></label>
-              <input
-                id="occurred_at" name="occurred_at" type="datetime-local" placeholder=" "
-              />
+              <DateTimeLocalInput id="occurred_at" name="occurred_at" />
             </div>
           </div>
 
