@@ -24,6 +24,7 @@ const baseData: DashboardData = {
   totalVacancies: 0,
   upcomingContacts: [],
   latestUpdates: [],
+  recentVacancies: [],
 }
 
 describe('UpcomingContacts', () => {

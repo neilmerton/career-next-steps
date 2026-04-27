@@ -58,7 +58,7 @@ export default async function DashboardPage() {
         </section>
 
         <section className={styles.section}>
-          <h2 className="section-title">Recent activity</h2>
+          <h2 className="section-title">Previous 7 days activity</h2>
           <LatestUpdates />
         </section>
       </HydrationBoundary>

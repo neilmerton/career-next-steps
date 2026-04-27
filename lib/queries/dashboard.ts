@@ -1,6 +1,6 @@
+import type { DashboardData } from '@/lib/data/dashboard'
 import { useQuery } from '@tanstack/react-query'
 import { queryKeys } from './keys'
-import type { DashboardData } from '@/lib/data/dashboard'
 
 export function useDashboardData() {
   return useQuery({

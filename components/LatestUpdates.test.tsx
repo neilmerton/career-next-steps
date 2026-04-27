@@ -50,7 +50,7 @@ const nextDayUpdate: UpdateWithRelations = {
 
 const baseData: DashboardData = {
   statusCounts: {}, totalVacancies: 0,
-  upcomingContacts: [], latestUpdates: [],
+  upcomingContacts: [], latestUpdates: [], recentVacancies: [],
 }
 
 describe('LatestUpdates', () => {
@@ -60,10 +60,10 @@ describe('LatestUpdates', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders the empty state when there are no updates', () => {
+  it('renders the empty state when there are no updates or recent vacancies', () => {
     mockUseDashboardData.mockReturnValue({ data: baseData, isPending: false } as any)
     render(<LatestUpdates />)
-    expect(screen.getByText(/no updates yet/i)).toBeInTheDocument()
+    expect(screen.getByText(/no recent activity/i)).toBeInTheDocument()
   })
 
   it('renders the notes for each update', () => {
@@ -150,5 +150,59 @@ describe('LatestUpdates', () => {
     render(<LatestUpdates />)
     // Both on 2026-04-15 — only one group heading
     expect(screen.getAllByText('15 Apr 2026')).toHaveLength(1)
+  })
+
+  it('renders recently applied vacancies with title, company and Applied badge', () => {
+    mockUseDashboardData.mockReturnValue({
+      data: {
+        ...baseData,
+        recentVacancies: [{ id: 'v3', title: 'Product Manager', company: 'Big Corp', date_applied: '2026-04-14', status: 'applied' }],
+      },
+      isPending: false,
+    } as any)
+    render(<LatestUpdates />)
+    expect(screen.getByText('Product Manager')).toBeInTheDocument()
+    expect(screen.getByText('Big Corp')).toBeInTheDocument()
+    expect(screen.getByText('Applied')).toBeInTheDocument()
+  })
+
+  it('shows current status in meta when a vacancy has progressed beyond applied', () => {
+    mockUseDashboardData.mockReturnValue({
+      data: {
+        ...baseData,
+        recentVacancies: [{ id: 'v3', title: 'Product Manager', company: 'Big Corp', date_applied: '2026-04-14', status: 'interviewing' }],
+      },
+      isPending: false,
+    } as any)
+    render(<LatestUpdates />)
+    expect(screen.getByText('Applied')).toBeInTheDocument()
+    expect(screen.getByText('Interviewing')).toBeInTheDocument()
+  })
+
+  it('links recently applied vacancies to the vacancy detail page', () => {
+    mockUseDashboardData.mockReturnValue({
+      data: {
+        ...baseData,
+        recentVacancies: [{ id: 'v3', title: 'Product Manager', company: 'Big Corp', date_applied: '2026-04-14', status: 'applied' }],
+      },
+      isPending: false,
+    } as any)
+    render(<LatestUpdates />)
+    expect(screen.getByRole('link', { name: /product manager/i })).toHaveAttribute('href', '/vacancies/v3')
+  })
+
+  it('groups vacancies and updates together by date', () => {
+    mockUseDashboardData.mockReturnValue({
+      data: {
+        ...baseData,
+        latestUpdates: [vacancyUpdate], // 2026-04-15
+        recentVacancies: [{ id: 'v3', title: 'Product Manager', company: 'Big Corp', date_applied: '2026-04-15', status: 'applied' }],
+      },
+      isPending: false,
+    } as any)
+    render(<LatestUpdates />)
+    expect(screen.getAllByText('15 Apr 2026')).toHaveLength(1)
+    expect(screen.getByText('Had a great interview')).toBeInTheDocument()
+    expect(screen.getByText('Product Manager')).toBeInTheDocument()
   })
 })

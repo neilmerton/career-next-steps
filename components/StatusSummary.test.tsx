@@ -19,6 +19,7 @@ const dashboardData: DashboardData = {
   totalVacancies: 4,
   upcomingContacts: [],
   latestUpdates: [],
+  recentVacancies: [],
 }
 
 describe('StatusSummary', () => {
