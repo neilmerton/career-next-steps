@@ -21,16 +21,16 @@ export default function LatestUpdates() {
 
   const { latestUpdates, recentVacancies } = data
 
+  if (latestUpdates.length === 0 && recentVacancies.length === 0) {
+    return <p className={styles.empty}>No recent activity.</p>
+  }
+
   const allItems: AnyItem[] = [
     ...latestUpdates.map(u => ({ type: 'update' as const, date: u.occurred_at.slice(0, 10), data: u })),
     ...recentVacancies
       .filter((v): v is RecentVacancy & { date_applied: string } => v.date_applied !== null)
       .map(v => ({ type: 'vacancy' as const, date: v.date_applied, data: v })),
   ].sort((a, b) => b.date.localeCompare(a.date))
-
-  if (allItems.length === 0) {
-    return <p className={styles.empty}>No recent activity.</p>
-  }
 
   const grouped = new Map<string, { label: string; items: AnyItem[] }>()
   for (const item of allItems) {
